@@ -333,6 +333,38 @@ h2.t em{font-style:italic;color:var(--accent)}
   display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:17px}
 .warranty b{color:var(--text-primary);font-weight:600}
 
+
+/* ancoragem e contador */
+.chip{
+  display:inline-flex;align-items:center;gap:9px;flex-wrap:wrap;
+  margin:clamp(24px,5.6vw,32px) 0 0;padding:9px 15px;border-radius:99px;
+  background:var(--accent-muted);border:1px solid rgba(233,165,166,.34);
+  font-size:clamp(12.5px,3.4vw,13.5px);color:var(--text-secondary);line-height:1.5;
+}
+.chip s{color:var(--text-dim);text-decoration-thickness:1px}
+.chip b{font-family:var(--mono);color:var(--accent-hover);font-weight:500;font-variant-numeric:tabular-nums}
+.chip .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);
+  flex:0 0 7px;animation:blink 1.6s ease-in-out infinite}
+.anchor{display:flex;align-items:center;justify-content:center;gap:11px;flex-wrap:wrap;margin:0 0 14px}
+.anchor .was{font-size:15px;color:var(--text-dim)}
+.anchor .was s{text-decoration-thickness:1.5px}
+.anchor .off{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  background:var(--accent-deep);color:#FFF1EF;border-radius:99px;padding:6px 12px;font-weight:500;
+}
+.clock{
+  display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;
+  margin:0 0 22px;padding:13px 16px;border-radius:14px;
+  background:rgba(23,16,15,.6);border:1px solid var(--line-2);
+}
+.clock span{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--text-dim)}
+.clock b{font-family:var(--mono);font-size:clamp(20px,5.4vw,24px);color:var(--accent-hover);
+  font-weight:500;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.after{margin:16px 0 0;font-size:13.5px;color:var(--text-dim);line-height:1.55}
+body.expired .chip .pulse,body.expired .clock b{color:var(--text-dim)}
+body.expired .anchor,body.expired .cash{display:none}
+
 /* fecho */
 .close p{margin:0 0 20px;font-size:clamp(16px,4.2vw,17.5px)}
 .close em{font-style:italic;color:var(--accent-hover)}
@@ -379,6 +411,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
 
     <p class="eyebrow lift l2">Você acabou de garantir o seu método.</p>
     <h1 class="lift l3">Agora imagine ele montado <em>exatamente só pro seu caso</em>, semana por semana.</h1>
+    <p class="chip lift l4"><span class="pulse" aria-hidden="true"></span>
+      <span><s>R$ 797</s> por <b>R$ 397</b> nesta página, pelos próximos <b id="clock1">15:00</b></span></p>
     <p class="cue lift l4">Continue rolando<i aria-hidden="true"></i></p>
   </section>
 
@@ -523,11 +557,17 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
     <div class="offer rv">
       <p class="nm">Plano <em>Sob Medida</em></p>
       <p class="once">Esta condição existe apenas nesta página</p>
+      <div class="anchor" id="anchorRow">
+        <span class="was">Valor avulso: <s>R$ 797</s></span>
+        <span class="off">Metade do preço agora</span>
+      </div>
       <!-- PLACEHOLDER DE PREÇO: confirmar parcelamento e juros da plataforma -->
-      <p class="price"><small>12x de R$</small>39,70</p>
-      <p class="cash">ou R$ 397 à vista</p>
-      <!-- PLACEHOLDER: URL de aceite do one-click -->
-      <a class="btn" href="#">SIM, QUERO MEU PLANO SOB MEDIDA</a>
+      <p class="price" id="priceMain"><small>12x de R$</small>39,70</p>
+      <p class="cash" id="priceCash">ou R$ 397 à vista, uma economia de R$ 400</p>
+      <div class="clock"><span id="clockLabel">Sua condição expira em</span><b id="clock2">15:00</b></div>
+      <!-- PLACEHOLDER: URL de aceite do one-click com o valor de R$ 397 -->
+      <a class="btn" id="cta" href="#">SIM, QUERO MEU PLANO SOB MEDIDA</a>
+      <p class="after" id="afterLine">Fora desta página, o Plano Sob Medida volta ao valor avulso de R$ 797.</p>
       <div class="warranty">
         <div class="seal" aria-hidden="true">7</div>
         <div><b>Sete dias de garantia, contados do dia em que o seu cronograma chegar.</b> O prazo não começa hoje, começa quando você tem o documento na mão. Se não fizer sentido para você, devolvemos o valor inteiro.</div>
@@ -568,6 +608,47 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
       v += 1.6; if(v >= 90){ v = 90; clearInterval(t); }
       pct.textContent = Math.round(v) + '%';
     }, 48);
+  })();
+
+
+  /* ---------- ancoragem e contador ----------
+     Desligue o contador trocando ligado para false. Com ele ligado, quando o
+     tempo acaba a página assume o valor avulso e o botão passa a apontar para
+     a URL de checkout cheio, que precisa existir de verdade. */
+  var OFERTA = {
+    ligado: true,
+    minutos: 15,
+    urlCheio: '#',            /* PLACEHOLDER: URL de checkout de R$ 797 */
+    precoCheio: '<small>12x de R$</small>79,70',
+    avistaCheio: 'ou R$ 797 à vista'
+  };
+  (function(){
+    var c1 = document.getElementById('clock1'), c2 = document.getElementById('clock2');
+    if(!OFERTA.ligado){
+      document.querySelector('.clock').style.display = 'none';
+      c1.parentNode.innerHTML = '<s>R$ 797</s> por <b>R$ 397</b>, só nesta página';
+      return;
+    }
+    var fim = Date.now() + OFERTA.minutos * 60000, ultimo = '';
+    function pinta(){
+      var falta = Math.max(0, fim - Date.now());
+      var m = Math.floor(falta / 60000), sg = Math.floor(falta % 60000 / 1000);
+      var txt = (m < 10 ? '0' : '') + m + ':' + (sg < 10 ? '0' : '') + sg;
+      if(txt !== ultimo){ ultimo = txt; c1.textContent = txt; c2.textContent = txt; }
+      if(falta <= 0){ clearInterval(t); expira(); }
+    }
+    function expira(){
+      document.body.classList.add('expired');
+      document.getElementById('priceMain').innerHTML = OFERTA.precoCheio;
+      document.getElementById('priceCash').textContent = OFERTA.avistaCheio;
+      document.getElementById('clockLabel').textContent = 'A condição desta página expirou';
+      c2.textContent = '00:00';
+      document.getElementById('afterLine').textContent = 'Este é o valor avulso do Plano Sob Medida.';
+      document.getElementById('cta').setAttribute('href', OFERTA.urlCheio);
+      c1.parentNode.innerHTML = 'A condição de <b>R$ 397</b> desta página expirou';
+    }
+    pinta();
+    var t = setInterval(pinta, 1000);
   })();
 
   /* revelações */
