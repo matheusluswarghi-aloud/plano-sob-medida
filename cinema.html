@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plano Sob Medida · Programa Mulheres Livres</title>
+<meta name="description" content="O método que você acabou de garantir, montado semana por semana para o seu caso, com o sinal exato de quando avançar.">
+<meta name="theme-color" content="#17100F">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2317100F'/%3E%3Cpath d='M5 20c4-9 8 9 11 0s7 5 11-4' stroke='%23E9A5A6' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#17100F;
+  --canvas-2:#1E1614;
+  --panel:#241B19;
+  --panel-2:#2C211E;
+  --line:#3B2C29;
+  --line-2:#4C3833;
+  --accent:#E9A5A6;
+  --accent-hover:#F6C3C0;
+  --accent-muted:rgba(233,165,166,.16);
+  --accent-deep:#9A5A5D;
+  --text-primary:#F7ECE8;
+  --text-secondary:#B7A19C;
+  --text-dim:#8A7671;
+  --paper:#F7F1EC;
+  --ink:#3A2C29;
+  --display:"Fraunces",Georgia,serif;
+  --body:"Karla",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,monospace;
+  --e1:cubic-bezier(.22,.68,.24,1);
+  --e2:cubic-bezier(.36,0,.06,1);
+  --tshadow:0 1px 2px rgba(8,5,6,.95),0 3px 12px rgba(8,5,6,.78),0 10px 44px rgba(8,5,6,.8);
+}
+*{box-sizing:border-box}
+html,body{overflow-x:hidden;overflow-x:clip}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--canvas);color:var(--text-primary);
+  font-family:var(--body);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;
+}
+.skip{
+  position:absolute;left:-9999px;top:0;background:var(--accent);color:#2A1416;
+  padding:12px 18px;border-radius:0 0 10px 0;font-weight:700;z-index:200;
+}
+.skip:focus{left:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+/* ---------- ambiente fixo ---------- */
+.ambient{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(60vw 44vw at 74% 8%, rgba(233,165,166,.11), transparent 62%),
+    radial-gradient(54vw 42vw at 12% 44%, rgba(154,90,93,.13), transparent 64%),
+    radial-gradient(62vw 48vw at 62% 92%, rgba(233,165,166,.07), transparent 66%);
+  animation:drift 96s var(--e1) infinite alternate;
+}
+@keyframes drift{to{transform:translate3d(0,-2.2%,0) scale(1.05)}}
+
+/* ---------- aviso do topo ---------- */
+.alert{
+  position:sticky;top:0;z-index:90;text-align:center;
+  background:linear-gradient(90deg,#8E4E51,#B76A6B 50%,#8E4E51);
+  background-size:220% 100%;animation:slideBg 7s linear infinite;
+  padding:14px 16px 0;border-bottom:1px solid rgba(255,255,255,.16);
+}
+.alert b{
+  display:block;font-family:var(--body);font-weight:700;color:#FFF6F4;
+  font-size:clamp(15px,4.3vw,21px);letter-spacing:.055em;line-height:1.22;text-transform:uppercase;
+}
+.alert .dot{
+  display:inline-block;width:8px;height:8px;border-radius:50%;background:#FFE9E6;
+  margin-right:9px;vertical-align:middle;animation:blink 1.15s ease-in-out infinite;
+}
+.pbar{margin:11px auto 0;max-width:420px;height:7px;border-radius:99px;background:rgba(0,0,0,.32);overflow:hidden}
+.pbar i{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,#FFD9D3,#FFF1EE);transition:width 2.6s cubic-bezier(.15,.75,.25,1)}
+.pmeta{
+  display:flex;justify-content:space-between;max-width:420px;margin:5px auto 0;padding-bottom:9px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,240,238,.75);
+}
+@keyframes slideBg{to{background-position:220% 0}}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.72)}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;height:320vh;z-index:1}
+.stage{position:sticky;top:0;height:100vh;overflow:hidden}
+#field{position:absolute;inset:0;width:100%;height:100%;transform:translateZ(0)}
+.scrim{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 120% 90% at 50% 46%, rgba(12,8,9,0) 34%, rgba(12,8,9,.66) 100%);
+}
+.band{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:0 24px;opacity:0;pointer-events:none;text-shadow:var(--tshadow);
+}
+.band::before{
+  content:"";position:absolute;inset:-4%;pointer-events:none;
+  opacity:calc(.25 + .75*var(--k,0));
+  background:radial-gradient(ellipse 74% 58% at 50% 50%, rgba(8,5,7,.68) 0%, rgba(8,5,7,.46) 46%, rgba(8,5,7,0) 76%);
+}
+.band > *{position:relative}
+.band.live{opacity:1}
+.band h2,.band h1{
+  font-family:var(--display);font-weight:400;letter-spacing:-.015em;
+  font-size:clamp(34px,7.6vw,68px);line-height:1.06;margin:0;max-width:15ch;
+}
+.band .kicker{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:20px;
+}
+.w{display:inline-block;white-space:pre}
+.c{display:inline-block;will-change:transform,opacity}
+
+/* entrada a: subida palavra a palavra */
+.rise .w{
+  --kc:clamp(0,(var(--k,0) - var(--th,0))*2.8,1);
+  opacity:var(--kc);
+  transform:translateY(calc((1 - var(--kc)) * 26px));
+}
+/* entrada b: desfoque para nitidez */
+.sharp{position:relative}
+.sharp .soft{position:absolute;inset:0;filter:blur(11px);opacity:calc(1 - var(--k,0))}
+.sharp .hard{opacity:var(--k,0)}
+/* entrada c: dispersão por caractere */
+.scatter .c{
+  --kc:clamp(0,(var(--k,0) - var(--th,0))*2.6,1);
+  opacity:var(--kc);
+  transform:translate(calc((1 - var(--kc))*var(--jx,0px)),calc((1 - var(--kc))*var(--jy,0px))) rotate(calc((1 - var(--kc))*var(--jr,0deg)));
+}
+/* entrada d: assentamento em etapas */
+.settle .w{
+  --kc:clamp(0,(var(--k,0) - var(--th,0))*3,1);
+  opacity:var(--kc);transform:translateY(calc((1 - var(--kc)) * 22px));
+}
+.settle .sub{
+  --ks:clamp(0,(var(--k,0) - .62)*4,1);
+  opacity:var(--ks);transform:translateY(calc((1 - var(--ks)) * 14px));
+  margin:22px 0 0;font-size:clamp(16px,2.4vw,19px);color:var(--text-secondary);max-width:30ch;
+}
+.cue{
+  --kb:clamp(0,(var(--k,0) - .8)*5,1);
+  opacity:var(--kb);margin-top:34px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--text-dim);
+}
+.cue i{display:block;width:1px;height:26px;margin:10px auto 0;background:linear-gradient(var(--accent),transparent)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- conteúdo ---------- */
+main{position:relative;z-index:2;background:var(--canvas)}
+.wrap{max-width:680px;margin:0 auto;padding:0 24px}
+section{padding:74px 0}
+.kick{
+  font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 14px;display:flex;align-items:center;gap:10px;
+}
+.kick i{display:block;width:26px;height:1px;background:var(--accent-deep);font-style:normal}
+h2.t{
+  font-family:var(--display);font-weight:400;letter-spacing:-.012em;
+  font-size:clamp(29px,6.2vw,44px);line-height:1.12;margin:0 0 18px;
+}
+h2.t em{font-style:italic;color:var(--accent)}
+.lede{color:var(--text-secondary);font-size:17.5px;margin:0;max-width:62ch}
+.lede b{color:var(--text-primary);font-weight:600}
+
+/* onda assinatura */
+.wave{display:block;width:100%;height:46px;overflow:visible;color:var(--accent-deep)}
+.wave path{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;
+  stroke-dasharray:var(--len,1200);stroke-dashoffset:var(--len,1200);
+  transition:stroke-dashoffset 1.9s var(--e2)}
+.wave.in path{stroke-dashoffset:0}
+
+/* revelações */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s var(--e1),transform .8s var(--e1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.09s}.rv.d2{transition-delay:.18s}.rv.d3{transition-delay:.27s}
+
+/* matrícula */
+.enroll{
+  display:flex;gap:14px;align-items:flex-start;padding:18px 20px;
+  border:1px solid var(--line);border-radius:14px;background:var(--panel);
+  font-size:15px;color:var(--text-secondary);
+}
+.spin{flex:0 0 22px;height:22px;border-radius:50%;margin-top:3px;
+  border:2px solid rgba(233,165,166,.22);border-top-color:var(--accent);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.enroll b{color:var(--text-primary);font-weight:600}
+.enroll u{color:var(--accent-hover);text-decoration:none;font-weight:600}
+
+/* carta */
+.letter p{margin:0 0 20px;font-size:17.5px}
+.letter em{font-style:italic;color:var(--accent-hover)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:30px 0}
+.stat{background:var(--canvas-2);padding:18px 10px;text-align:center}
+.stat b{display:block;font-family:var(--display);font-size:clamp(25px,6vw,33px);font-weight:500;color:var(--accent);line-height:1}
+.stat span{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);display:block;margin-top:7px;line-height:1.4}
+.sig{display:flex;align-items:center;gap:15px;margin-top:8px}
+.avatar{width:60px;height:60px;border-radius:50%;flex:0 0 60px;object-fit:cover;
+  background:linear-gradient(140deg,#3B2C29,#5E4142);border:1px solid var(--line-2);
+  display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:21px;color:var(--accent)}
+.sig-name strong{display:block;font-weight:600;font-size:15.5px}
+.sig-name span{color:var(--text-dim);font-size:13px}
+
+/* cilindros */
+.combo{border:1px solid var(--line);border-radius:20px;background:linear-gradient(180deg,var(--panel),rgba(30,22,20,.6));padding:26px 20px 24px;margin-top:28px}
+.combo-h{text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px}
+.reels{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.reel{background:var(--canvas);border:1px solid var(--line-2);border-radius:12px;overflow:hidden;text-align:center;transition:border-color .4s var(--e1),box-shadow .4s var(--e1)}
+.reel .cap{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);padding:9px 4px 8px;border-bottom:1px solid var(--line)}
+.reel .win{height:40px;overflow:hidden;position:relative}
+.reel .strip{position:absolute;top:0;left:0;right:0}
+.reel .strip div{height:40px;line-height:40px;font-size:13.5px;font-weight:600;padding:0 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.reel.locked{border-color:var(--accent);box-shadow:0 8px 30px rgba(233,165,166,.15)}
+.reel.locked .strip div{color:var(--accent-hover)}
+.combo-out{margin-top:18px;border-top:1px dashed var(--line-2);padding-top:17px;text-align:center;
+  opacity:0;transform:translateY(10px);transition:opacity .6s var(--e1),transform .6s var(--e1)}
+.combo-out.on{opacity:1;transform:none}
+.combo-out span{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim)}
+.combo-out b{display:block;font-family:var(--display);font-size:27px;color:var(--accent-hover);font-weight:500;margin-top:6px}
+
+/* avaliação */
+.evalbox{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:26px 20px;margin-top:26px}
+.evalnum{text-align:center;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.evalnum b{display:block;font-family:var(--display);font-size:clamp(50px,14vw,72px);line-height:1;font-weight:400;color:var(--accent)}
+.evalnum span{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim)}
+.cats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:18px 0 0}
+.cat{border:1px solid var(--line-2);border-radius:11px;padding:12px 14px;background:rgba(23,16,15,.5);
+  display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.cat span{font-size:13.5px;color:var(--text-secondary)}
+.cat i{font-style:normal;font-family:var(--display);font-size:19px;color:var(--accent)}
+.qflow{margin-top:20px;height:136px;overflow:hidden;position:relative;
+  -webkit-mask-image:linear-gradient(transparent,#000 22%,#000 76%,transparent);
+  mask-image:linear-gradient(transparent,#000 22%,#000 76%,transparent)}
+.qflow ul{margin:0;padding:0;list-style:none;animation:flow 36s linear infinite}
+.qflow li{padding:10px 0 10px 22px;font-size:14.5px;color:var(--text-dim);font-style:italic;position:relative;line-height:1.4}
+.qflow li::before{content:"";position:absolute;left:0;top:18px;width:11px;height:1px;background:var(--accent-deep)}
+@keyframes flow{to{transform:translateY(-50%)}}
+.cap-note{text-align:center;font-size:12.5px;color:var(--text-dim);font-style:italic;margin:16px 0 0}
+
+/* documento */
+.docwrap{margin-top:26px}
+.tabs{display:flex;gap:8px;margin-bottom:16px}
+.tab{border:1px solid var(--line-2);background:transparent;color:var(--text-secondary);border-radius:99px;
+  padding:9px 17px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--body);
+  transition:all .28s var(--e1)}
+.tab:hover{border-color:var(--accent-deep);color:var(--text-primary)}
+.tab.on{background:var(--accent);border-color:var(--accent);color:#2A1416}
+.paper{background:var(--paper);color:var(--ink);border-radius:10px;padding:24px 22px;
+  box-shadow:0 30px 60px rgba(0,0,0,.5);font-size:12.5px;line-height:1.56}
+.paper .pk{font-family:var(--mono);font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:9px}
+.paper h4{font-family:var(--display);font-size:24px;font-weight:500;margin:0 0 3px;line-height:1.12;color:#2A1F1D}
+.paper .for{font-size:11px;color:#84706B;margin:0 0 16px}
+.paper .field{border-top:1px solid #E4D8D1;padding:8px 0;display:flex;gap:10px;align-items:baseline}
+.paper .field span{color:#8D7873;flex:0 0 98px;font-size:10.5px}
+.paper .field b{font-weight:600;font-size:11.5px;color:#3A2C29}
+.paper .note{background:#EEE1DA;border-radius:6px;padding:12px 13px;margin-top:15px;font-size:11px;line-height:1.55;color:#4A3A36}
+.paper .note b{color:#8E4E51}
+.phase{background:#3A2C29;color:#F7F1EC;border-radius:5px;padding:6px 11px;font-family:var(--mono);
+  font-size:9px;letter-spacing:.1em;text-transform:uppercase;display:inline-block;margin-bottom:13px}
+.paper table{width:100%;border-collapse:collapse;font-size:11px}
+.paper td{padding:8px 0;border-bottom:1px solid #E4D8D1;vertical-align:top}
+.paper td:first-child{color:#8D7873;width:60px;font-weight:600}
+.paper td:last-child{text-align:right;color:#8D7873;width:46px;white-space:nowrap}
+.greenbox{margin-top:15px;border:1px dashed #BE9092;border-radius:7px;padding:12px 13px;font-size:11px;line-height:1.55;color:#6B4B4D}
+.greenbox b{display:block;font-family:var(--mono);color:#8E4E51;font-size:9px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
+.fade-sw{animation:fsw .42s var(--e1)}
+@keyframes fsw{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
+
+/* momento interativo */
+.hold{border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,var(--panel-2),rgba(30,22,20,.65));
+  padding:34px 22px;text-align:center;margin-top:26px}
+.holdring{position:relative;width:150px;height:150px;margin:0 auto 22px}
+.holdring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.holdring circle{fill:none;stroke-width:3}
+.holdring .bg{stroke:var(--line-2)}
+.holdring .fg{stroke:var(--accent);stroke-linecap:round;stroke-dasharray:414;stroke-dashoffset:var(--hd,414)}
+.holdbtn{
+  position:absolute;inset:22px;border-radius:50%;border:1px solid var(--line-2);
+  background:var(--canvas);color:var(--text-secondary);font-family:var(--mono);
+  font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;padding:10px;line-height:1.4;
+  transition:color .3s var(--e1),border-color .3s var(--e1),background .3s var(--e1);
+  -webkit-user-select:none;user-select:none;touch-action:none;
+}
+.holdbtn:hover{color:var(--text-primary);border-color:var(--accent-deep)}
+.hold.done .holdbtn{color:var(--accent);border-color:var(--accent);background:var(--accent-muted)}
+.holdout{max-width:44ch;margin:0 auto;color:var(--text-secondary);font-size:16px;min-height:5.4em}
+.holdout .a,.holdout .b{transition:opacity .5s var(--e1)}
+.hold .b{opacity:0;position:absolute;left:0;right:0}
+.holdout{position:relative}
+.hold.done .a{opacity:0}
+.hold.done .b{opacity:1}
+
+/* chat */
+.chatbox{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:22px 18px;margin-top:26px}
+.chat-head{display:flex;align-items:center;gap:11px;padding-bottom:15px;margin-bottom:8px;border-bottom:1px solid var(--line)}
+.chat-head .av{width:36px;height:36px;border-radius:50%;background:var(--accent-muted);border:1px solid var(--accent-deep);
+  display:flex;align-items:center;justify-content:center;font-size:15px}
+.chat-head b{display:block;font-size:14.5px;line-height:1.2}
+.chat-head span{font-family:var(--mono);font-size:10.5px;color:#82C393}
+.chat-head span i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#82C393;margin-right:6px}
+.chat{min-height:290px;display:flex;flex-direction:column;gap:10px;justify-content:flex-end}
+.msg{max-width:84%;padding:12px 15px;border-radius:16px;font-size:14.5px;line-height:1.5;animation:pop .4s var(--e1)}
+.msg.me{align-self:flex-end;background:var(--accent);color:#2A1416;border-bottom-right-radius:5px;font-weight:500}
+.msg.ai{align-self:flex-start;background:var(--panel-2);border:1px solid var(--line-2);border-bottom-left-radius:5px}
+.msg.ai b{color:var(--accent-hover);font-weight:600}
+@keyframes pop{from{opacity:0;transform:translateY(11px) scale(.97)}to{opacity:1;transform:none}}
+.typing{align-self:flex-start;background:var(--panel-2);border:1px solid var(--line-2);border-radius:16px;
+  border-bottom-left-radius:5px;padding:14px 16px;display:flex;gap:5px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:tb 1.1s infinite}
+.typing i:nth-child(2){animation-delay:.16s}.typing i:nth-child(3){animation-delay:.32s}
+@keyframes tb{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
+
+/* recap */
+.recap{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:26px 22px}
+.recap h3{margin:0 0 16px;font-family:var(--display);font-size:26px;font-weight:500}
+.recap ul{margin:0;padding:0}
+.recap li{list-style:none;padding:13px 0 13px 32px;position:relative;border-bottom:1px solid rgba(59,44,41,.75);
+  font-size:15.5px;color:var(--text-secondary)}
+.recap li:last-child{border-bottom:0}
+.recap li b{color:var(--text-primary);font-weight:600}
+.recap li::before{content:"";position:absolute;left:2px;top:19px;width:15px;height:8px;
+  border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(-45deg)}
+
+/* passos */
+.steps{margin-top:26px;position:relative;padding-left:26px}
+.steps::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:1px;background:var(--line-2)}
+.stp{padding-bottom:28px;position:relative}
+.stp:last-child{padding-bottom:0}
+.stp::before{content:"";position:absolute;left:-30px;top:8px;width:9px;height:9px;border-radius:50%;
+  background:var(--accent);box-shadow:0 0 0 4px var(--canvas),0 0 18px rgba(233,165,166,.55)}
+.stp .when{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.stp p{margin:0;font-size:16px;color:var(--text-secondary)}
+.stp p b{color:var(--text-primary);font-weight:600}
+
+/* oferta */
+.offer{border:1px solid rgba(233,165,166,.3);border-radius:24px;
+  background:linear-gradient(180deg,rgba(44,33,30,.96),rgba(30,22,20,.92));
+  padding:38px 24px;text-align:center;box-shadow:0 34px 78px rgba(0,0,0,.46),inset 0 1px 0 rgba(255,255,255,.05)}
+.offer .nm{font-family:var(--display);font-size:32px;font-weight:400;margin:0 0 5px}
+.offer .nm em{font-style:italic;color:var(--accent)}
+.once{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);margin:0 0 26px}
+.price{font-family:var(--display);font-size:clamp(46px,12vw,66px);line-height:1;font-weight:400;color:var(--accent-hover);margin:0 0 7px;letter-spacing:-.02em}
+.price small{font-size:23px;color:var(--accent)}
+.cash{font-size:15px;color:var(--text-secondary);margin:0 0 28px}
+.btn{display:block;background:linear-gradient(180deg,var(--accent-hover),var(--accent));color:#2A1416;
+  text-decoration:none;font-weight:700;font-size:17px;padding:21px 18px;border-radius:14px;line-height:1.3;
+  box-shadow:0 14px 36px rgba(233,165,166,.22);position:relative;overflow:hidden;
+  transition:transform .2s var(--e1),box-shadow .2s var(--e1)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 20px 44px rgba(233,165,166,.32)}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:38%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);
+  transform:skewX(-20deg);animation:shine 3.6s ease-in-out infinite}
+@keyframes shine{0%,74%{left:-60%}100%{left:130%}}
+.warranty{display:flex;gap:14px;align-items:flex-start;text-align:left;margin-top:26px;padding-top:24px;
+  border-top:1px solid var(--line);font-size:14.5px;color:var(--text-secondary);line-height:1.55}
+.seal{flex:0 0 46px;height:46px;border-radius:50%;border:1px solid rgba(233,165,166,.42);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:18px}
+.warranty b{color:var(--text-primary);font-weight:600}
+
+/* fecho */
+.close p{margin:0 0 20px;font-size:17.5px}
+.close em{font-style:italic;color:var(--accent-hover)}
+.decline{display:block;text-align:center;margin:38px 0 0;color:var(--text-dim);font-size:14px;
+  text-decoration:underline;text-underline-offset:3px}
+.decline:hover{color:var(--text-primary)}
+footer{position:relative;z-index:2;background:var(--canvas);border-top:1px solid var(--line);
+  padding:30px 24px 56px;font-size:12.5px;color:#7A6864;line-height:1.6;text-align:center}
+
+@media (pointer:coarse){
+  .btn,.tab,.holdbtn{min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+  .btn{display:flex}
+}
+@media (max-width:560px){
+  body{font-size:16.5px}
+  .cats{grid-template-columns:1fr}
+  .hero{height:280vh}
+}
+@media (max-height:520px){.cue{display:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  .rv{opacity:1;transform:none}
+  .wave path{stroke-dashoffset:0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo</a>
+<div class="ambient" aria-hidden="true"></div>
+
+<div class="alert">
+  <b><span class="dot"></span>Não feche essa página ainda</b>
+  <div class="pbar"><i id="pbar"></i></div>
+  <div class="pmeta"><span>Processando</span><span id="ppct">0%</span></div>
+</div>
+
+<div class="hero" id="hero">
+  <div class="stage" id="stage">
+    <canvas id="field" aria-hidden="true"></canvas>
+    <div class="scrim" aria-hidden="true"></div>
+
+    <div class="band rise" data-band="0" data-range="0,0.22">
+      <p class="kicker">Programa Mulheres Livres</p>
+      <h2 data-split="word">Você acabou de garantir o seu método.</h2>
+    </div>
+
+    <div class="band sharp" data-band="1" data-range="0.26,0.5">
+      <h2>
+        <span class="sr">Cada corpo tem um tempo.</span>
+        <span class="soft" aria-hidden="true">Cada corpo tem um tempo.</span>
+        <span class="hard" aria-hidden="true">Cada corpo tem um tempo.</span>
+      </h2>
+    </div>
+
+    <div class="band scatter" data-band="2" data-range="0.54,0.74">
+      <h2 data-split="char">O seu, a gente monta junto.</h2>
+    </div>
+
+    <div class="band settle" data-band="3" data-range="0.8,1">
+      <h1 data-split="word">Agora imagine o método montado só para o seu caso.</h1>
+      <p class="sub">Semana por semana, com o sinal exato de quando você pode avançar.</p>
+      <p class="cue">Continue rolando<i></i></p>
+    </div>
+  </div>
+</div>
+
+<main id="main" tabindex="-1">
+
+  <section class="wrap" style="padding-top:56px">
+    <div class="enroll rv">
+      <div class="spin" aria-hidden="true"></div>
+      <div><b>Estamos confirmando a sua matrícula no Programa Mulheres Livres.</b> Em instantes você vai receber o acesso no seu e-mail, mas <u>preste muita atenção no recado abaixo</u>.</div>
+    </div>
+  </section>
+
+  <section class="wrap letter">
+    <p class="rv">Antes de você entrar, eu quero te mostrar uma coisa que só existe nesta página.</p>
+    <p class="rv d1">Quando uma mulher senta na minha frente numa consulta, boa parte do meu trabalho não é ensinar exercício. É olhar a história dela, entender em que ponto o corpo está hoje e montar a ordem: o que fazer primeiro, quantos minutos, em quais dias da semana, o que ainda esperar e, principalmente, <em>quando ela pode passar para a próxima fase</em>.</p>
+    <p class="rv d2">Essa parte do meu trabalho eu consegui colocar dentro de um cronograma. Um cronograma feito a partir das suas respostas, com o seu nome, o seu ponto de partida e os seus horários.</p>
+
+    <div class="stats rv d2">
+      <div class="stat"><b>10+</b><span>anos de<br>consultório</span></div>
+      <div class="stat"><b>1.000+</b><span>mulheres<br>atendidas</span></div>
+      <div class="stat"><b>26</b><span>países<br>alcançados</span></div>
+    </div>
+
+    <div class="sig rv d3">
+      <!-- PLACEHOLDER: trocar por <img class="avatar" src="assets/amanda.jpg" alt="Dra. Amanda Almeida"> -->
+      <div class="avatar" aria-hidden="true">AA</div>
+      <div class="sig-name">
+        <strong>Dra. Amanda Almeida</strong>
+        <span>Fisioterapia Pélvica e Sexologia · UNESP</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><svg class="wave" data-amp="1" viewBox="0 0 600 46" preserveAspectRatio="none" aria-hidden="true"><path d=""/></svg></div>
+
+  <section class="wrap">
+    <p class="kick rv"><i></i>O ponto de partida</p>
+    <h2 class="t rv">Cada caso é <em>um caso</em>.</h2>
+    <p class="lede rv d1">Duas mulheres com a mesma dor podem precisar de caminhos completamente diferentes. O que define o seu é o cruzamento de tudo o que você vai me contar.</p>
+
+    <div class="combo rv d2" id="combo">
+      <p class="combo-h">Montando o seu cruzamento</p>
+      <div class="reels">
+        <div class="reel"><div class="cap">Grau</div><div class="win"><div class="strip"></div></div></div>
+        <div class="reel"><div class="cap">Rotina</div><div class="win"><div class="strip"></div></div></div>
+        <div class="reel"><div class="cap">Histórico</div><div class="win"><div class="strip"></div></div></div>
+      </div>
+      <div class="combo-out" id="comboOut">
+        <span>O cronograma que corresponde a você</span>
+        <b>16 semanas, em 4 fases</b>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <p class="kick rv"><i></i>Entregável um · Avaliação Sob Medida</p>
+    <h2 class="t rv">Primeiro eu preciso <em>te conhecer</em>.</h2>
+    <p class="lede rv d1">Você vai passar por uma avaliação minuciosa, dividida em blocos: a sua história, o que o seu corpo consegue e o que ainda não consegue fazer hoje, o que você já tentou antes, a sua rotina e os seus horários, como está a sua relação e onde você quer chegar. É o mesmo levantamento que eu faria com você numa primeira consulta, e é ele que faz o seu cronograma ser <b>seu</b>, e não o de outra mulher.</p>
+
+    <div class="evalbox rv d2" id="evalDemo">
+      <div class="evalnum"><b id="qcount">0</b><span>perguntas na sua avaliação</span></div>
+      <div class="cats">
+        <div class="cat"><span>Sua história</span><i>8</i></div>
+        <div class="cat"><span>Seu corpo hoje</span><i>7</i></div>
+        <div class="cat"><span>O que já tentou</span><i>4</i></div>
+        <div class="cat"><span>Sua rotina</span><i>6</i></div>
+        <div class="cat"><span>Sua relação</span><i>5</i></div>
+        <div class="cat"><span>Seu objetivo</span><i>4</i></div>
+      </div>
+      <div class="qflow"><ul id="qflow"></ul></div>
+      <p class="cap-note">Alguns dos temas que a avaliação percorre.</p>
+    </div>
+  </section>
+
+  <div class="wrap"><svg class="wave" data-amp="0.72" viewBox="0 0 600 46" preserveAspectRatio="none" aria-hidden="true"><path d=""/></svg></div>
+
+  <section class="wrap">
+    <p class="kick rv"><i></i>Entregável dois · Seu cronograma</p>
+    <h2 class="t rv">A partir das suas respostas, eu monto <em>o seu cronograma</em>.</h2>
+    <p class="lede rv d1">Semana por semana, do primeiro dia até o último: o dia, o exercício, o tempo e a fase. Cada fase vem com o sinal exato do que você precisa sentir antes de avançar, e com o que fazer na semana em que nada parecer acontecer. Você para de decidir o que fazer e passa só a <b>executar</b>.</p>
+
+    <div class="docwrap rv d2">
+      <div class="tabs" id="tabs">
+        <button class="tab on" data-w="0" type="button">Seu perfil</button>
+        <button class="tab" data-w="1" type="button">Uma semana</button>
+      </div>
+      <div class="paper" id="paper"></div>
+      <p class="cap-note">Nome e respostas ilustrativos. Cada cronograma é montado a partir da avaliação.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <p class="kick rv"><i></i>O sinal verde</p>
+    <h2 class="t rv">Ninguém avança porque <em>quer</em>.</h2>
+    <p class="lede rv d1">Avança quando o corpo dá o sinal. Segure o botão abaixo e veja o que acontece se você soltar antes da hora.</p>
+
+    <div class="hold rv d2" id="hold">
+      <div class="holdring">
+        <svg viewBox="0 0 150 150" aria-hidden="true">
+          <circle class="bg" cx="75" cy="75" r="66"></circle>
+          <circle class="fg" cx="75" cy="75" r="66"></circle>
+        </svg>
+        <button class="holdbtn" id="holdBtn" type="button" aria-describedby="holdOut">Segure<br>para avançar</button>
+      </div>
+      <div class="holdout" id="holdOut">
+        <span class="a">Soltar no meio faz o progresso voltar. Nenhuma etapa pula sozinha.</span>
+        <span class="b"><b>Fase 2 liberada.</b> No seu cronograma esse sinal vem escrito, com o que você precisa sentir antes de passar. Você não precisa adivinhar a hora.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><svg class="wave" data-amp="0.46" viewBox="0 0 600 46" preserveAspectRatio="none" aria-hidden="true"><path d=""/></svg></div>
+
+  <section class="wrap">
+    <p class="kick rv"><i></i>Entregável três · Tira-dúvidas 24 horas</p>
+    <h2 class="t rv">E às <em>23h de um domingo</em>?</h2>
+    <p class="lede rv d1">É quase sempre nesse horário que a dúvida aparece. Você vai ter uma inteligência artificial treinada no meu método e no <b>seu</b> cronograma, disponível a qualquer hora. Ela sabe em que semana você está, o que você já fez e o que vem depois.</p>
+
+    <div class="chatbox rv d2" id="chatDemo">
+      <div class="chat-head">
+        <div class="av" aria-hidden="true">✦</div>
+        <div><b>Assistente do seu cronograma</b><span><i></i>online agora</span></div>
+      </div>
+      <div class="chat" id="chat"></div>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <div class="recap rv">
+      <h3>O que você leva hoje</h3>
+      <ul>
+        <li><b>Avaliação Sob Medida</b>, os blocos de perguntas que definem o seu ponto de partida, liberada agora</li>
+        <li><b>Aula Inaugural</b>, eu te ensinando a ler e a usar o seu cronograma, também liberada agora</li>
+        <li><b>Seu cronograma personalizado</b>, semana por semana, com os critérios de avanço, em até 3 dias</li>
+        <li><b>Tira-dúvidas 24h</b>, a inteligência artificial treinada no seu cronograma, durante todo o percurso</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <p class="kick rv"><i></i>O caminho</p>
+    <h2 class="t rv">Como funciona a partir de agora</h2>
+    <div class="steps">
+      <div class="stp rv"><p class="when">Hoje</p><p>Você garante o seu <b>Plano Sob Medida</b> nesta condição e já faz a avaliação completa, se quiser. Ela fica liberada na hora, junto com a Aula Inaugural.</p></div>
+      <div class="stp rv d1"><p class="when">Assim que você responder</p><p>Eu recebo as suas respostas, identifico o seu ponto de partida e <b>monto o seu cronograma</b>.</p></div>
+      <div class="stp rv d2"><p class="when">Em até 3 dias</p><p>O seu cronograma chega pronto, com o seu nome, as suas fases e os dias encaixados nos <b>seus</b> horários.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="offer">
+    <div class="offer rv">
+      <p class="nm">Plano <em>Sob Medida</em></p>
+      <p class="once">Esta condição existe apenas nesta página</p>
+      <!-- PLACEHOLDER DE PREÇO: confirmar parcelamento e juros da plataforma -->
+      <p class="price"><small>12x de R$</small>39,70</p>
+      <p class="cash">ou R$ 397 à vista</p>
+      <!-- PLACEHOLDER: URL de aceite do one-click -->
+      <a class="btn" href="#">SIM, QUERO MEU PLANO SOB MEDIDA</a>
+      <div class="warranty">
+        <div class="seal" aria-hidden="true">7</div>
+        <div><b>Sete dias de garantia, contados do dia em que o seu cronograma chegar.</b> O prazo não começa hoje, começa quando você tem o documento na mão. Se não fizer sentido para você, devolvemos o valor inteiro.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap close">
+    <p class="rv">Se você preferir seguir sem o plano, tudo bem. O Programa continua seu, inteiro, do mesmo jeito.</p>
+    <p class="rv d1">Mas se ao ler isto você pensou <em>“eu queria isso já montado pra mim”</em>, é exatamente para isso que o Plano Sob Medida existe.</p>
+    <p class="rv d1" style="margin-bottom:26px">Te vejo na Aula Inaugural.</p>
+    <div class="sig rv d2">
+      <!-- PLACEHOLDER: mesma foto do topo -->
+      <div class="avatar" aria-hidden="true">AA</div>
+      <div class="sig-name"><strong>Dra. Amanda Almeida</strong><span>Dra. Vaginismo</span></div>
+    </div>
+    <!-- PLACEHOLDER: URL de recusa do one-click -->
+    <a class="decline" href="#">Não, prefiro seguir sem o plano por enquanto</a>
+  </section>
+</main>
+
+<footer>
+  Dra. Amanda Almeida · Fisioterapia Pélvica e Sexologia<br>
+  O Plano Sob Medida é um material educativo de organização do tratamento e não substitui consulta, diagnóstico ou avaliação presencial.
+</footer>
+
+<script>
+(function(){
+  var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var reduce = mq.matches;
+
+  /* ---------------- barra do topo ---------------- */
+  (function(){
+    var bar = document.getElementById('pbar'), pct = document.getElementById('ppct');
+    setTimeout(function(){ bar.style.width = '90%'; }, 350);
+    if(reduce){ pct.textContent = '90%'; return; }
+    var v = 0, t = setInterval(function(){
+      v += 1.6; if(v >= 90){ v = 90; clearInterval(t); }
+      pct.textContent = Math.round(v) + '%';
+    }, 48);
+  })();
+
+  /* ---------------- divisão de texto com semente ---------------- */
+  function rng(seed){ var s = seed >>> 0; return function(){ s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; }
+
+  document.querySelectorAll('[data-split]').forEach(function(el, idx){
+    var mode = el.dataset.split, text = el.textContent.trim(), r = rng(idx * 7919 + 13);
+    var sr = document.createElement('span'); sr.className = 'sr'; sr.textContent = text;
+    var vis = document.createElement('span'); vis.setAttribute('aria-hidden','true');
+    var words = text.split(' ');
+    words.forEach(function(word, wi){
+      var w = document.createElement('span'); w.className = 'w';
+      if(mode === 'word'){
+        w.textContent = word;
+        w.style.setProperty('--th', (wi / words.length * 0.5).toFixed(3));
+      } else {
+        for(var i = 0; i < word.length; i++){
+          var c = document.createElement('span'); c.className = 'c'; c.textContent = word[i];
+          c.style.setProperty('--th', (r() * 0.5).toFixed(3));
+          c.style.setProperty('--jx', ((r() - 0.5) * 60).toFixed(1) + 'px');
+          c.style.setProperty('--jy', ((r() - 0.5) * 52).toFixed(1) + 'px');
+          c.style.setProperty('--jr', ((r() - 0.5) * 26).toFixed(1) + 'deg');
+          w.appendChild(c);
+        }
+      }
+      vis.appendChild(w);
+      if(wi < words.length - 1) vis.appendChild(document.createTextNode(' '));
+    });
+    el.textContent = '';
+    el.appendChild(sr); el.appendChild(vis);
+  });
+
+  /* ---------------- hero: cena em canvas comandada pelo scroll ---------------- */
+  var hero = document.getElementById('hero');
+  var stage = document.getElementById('stage');
+  var cv = document.getElementById('field'), ctx = cv.getContext('2d');
+  var W = 0, H = 0, dpr = 1, parts = [];
+
+  function buildParticles(){
+    var area = W * H, n = Math.round(Math.min(190, Math.max(70, area / 11000)));
+    var r = rng(99), i;
+    parts = [];
+    for(i = 0; i < n; i++){
+      var t = i / n;
+      parts.push({
+        sx: r(), sy: r(),
+        phase: r() * Math.PI * 2,
+        t: t,
+        size: 0.7 + r() * 1.9,
+        drift: 0.4 + r() * 0.9
+      });
+    }
+  }
+  function sizeCanvas(){
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    W = stage.clientWidth; H = stage.clientHeight;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    buildParticles();
+  }
+
+  function easeIO(x){ return x < 0.5 ? 4*x*x*x : 1 - Math.pow(-2*x + 2, 3) / 2; }
+
+  function drawField(p, time){
+    ctx.clearRect(0, 0, W, H);
+
+    /* respiração de fundo */
+    var breath = reduce ? 0.5 : (Math.sin(time / 2600) * 0.5 + 0.5);
+    var cx = W * 0.5, cy = H * 0.47;
+    var rad = Math.min(W, H) * (0.34 + breath * 0.06 + p * 0.1);
+    var g = ctx.createRadialGradient(cx, cy, rad * 0.1, cx, cy, rad);
+    g.addColorStop(0, 'rgba(233,165,166,' + (0.14 + breath * 0.05) + ')');
+    g.addColorStop(0.55, 'rgba(154,90,93,0.07)');
+    g.addColorStop(1, 'rgba(23,16,15,0)');
+    ctx.fillStyle = g;
+    ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2); ctx.fill();
+
+    /* partículas: dispersas no topo, alinhadas numa onda calma no fim */
+    var k = easeIO(Math.min(1, Math.max(0, p)));
+    var amp = H * 0.11 * (1 - k * 0.55);
+    var wob = reduce ? 0 : Math.sin(time / 3400) * 0.5 + 0.5;
+
+    for(var i = 0; i < parts.length; i++){
+      var q = parts[i];
+      var chaosX = q.sx * W;
+      var chaosY = q.sy * H;
+      var lineX = 0.08 * W + q.t * 0.84 * W;
+      var lineY = cy + Math.sin(q.t * Math.PI * 3.1 + wob * 0.9) * amp;
+      var x = chaosX + (lineX - chaosX) * k;
+      var y = chaosY + (lineY - chaosY) * k;
+      if(!reduce){
+        y += Math.sin(time / (1400 + q.drift * 1600) + q.phase) * (5 * (1 - k * 0.6));
+        x += Math.cos(time / (2100 + q.drift * 1400) + q.phase) * (4 * (1 - k * 0.7));
+      }
+      var a = 0.16 + k * 0.42;
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(246,195,192,' + a.toFixed(3) + ')';
+      ctx.arc(x, y, q.size * (0.85 + k * 0.5), 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    /* a linha que se forma quando o ritmo aparece */
+    if(k > 0.24){
+      ctx.beginPath();
+      for(var s = 0; s <= 120; s++){
+        var t2 = s / 120;
+        var lx = 0.08 * W + t2 * 0.84 * W;
+        var ly = cy + Math.sin(t2 * Math.PI * 3.1 + wob * 0.9) * amp;
+        if(s === 0) ctx.moveTo(lx, ly); else ctx.lineTo(lx, ly);
+      }
+      ctx.strokeStyle = 'rgba(233,165,166,' + (((k - 0.24) / 0.76) * 0.5).toFixed(3) + ')';
+      ctx.lineWidth = 1.4;
+      ctx.stroke();
+    }
+  }
+
+  /* ---------------- faixas ---------------- */
+  var bands = [].slice.call(document.querySelectorAll('.band')).map(function(el){
+    var r = el.dataset.range.split(',').map(Number);
+    return { el: el, a: r[0], b: r[1], live: null, k: -1, o: -1 };
+  });
+
+  var loadK = 0, loadStart = 0;
+
+  function paintBands(p, now){
+    for(var i = 0; i < bands.length; i++){
+      var B = bands[i];
+      var span = B.b - B.a;
+      var f = Math.min(0.02, span / 3);
+      var raw = (p - B.a) / span;
+      var vis = raw > -0.35 && raw < 1.35;
+      var k;
+      if(raw <= 0) k = 0;
+      else if(raw >= 1) k = 1;
+      else k = Math.min(1, raw / (f / span));
+      if(i === 0) k = Math.max(k, loadK);
+      var opacity = 0;
+      if(raw >= -0.15 && raw <= 1.15){
+        opacity = Math.min(1, Math.min((raw + 0.15) / 0.25, (1.15 - raw) / 0.25));
+      }
+      if(i === 0) opacity = Math.max(opacity, loadK * (p < B.b ? 1 : 0));
+      var wantLive = opacity > 0.01;
+      if(B.live !== wantLive){ B.live = wantLive; B.el.classList.toggle('live', wantLive); }
+      if(wantLive){
+        if(Math.abs(B.k - k) > 0.008 || k === 0 || k === 1){
+          B.k = k;
+          B.el.style.setProperty('--k', k.toFixed(3));
+        }
+        if(Math.abs(B.o - opacity) > 0.01 || opacity === 1){ B.o = opacity; B.el.style.opacity = opacity.toFixed(3); }
+      }
+    }
+  }
+
+  /* ---------------- loop que descansa ---------------- */
+  var target = 0, shown = 0, rafId = null, lastTick = 0, onScreen = true;
+
+  function heroProgress(){
+    var range = hero.offsetHeight - window.innerHeight;
+    if(range <= 0) return 0;
+    var y = -hero.getBoundingClientRect().top;
+    return Math.min(1, Math.max(0, y / range));
+  }
+
+  function tick(now){
+    var dt = Math.min(100, now - (lastTick || now));
+    lastTick = now;
+    var k = 0.16;
+    shown += (target - shown) * (1 - Math.pow(1 - k, dt / 16.667));
+    var settled = Math.abs(target - shown) < 0.0005;
+    if(settled){ shown = target; }
+    if(loadStart && loadK < 1){
+      loadK = Math.min(1, (now - loadStart) / 900);
+    }
+    drawField(shown, now);
+    paintBands(shown, now);
+    if(settled && loadK >= 1 && !motionAlive()){
+      rafId = null; lastTick = 0;
+    } else {
+      rafId = requestAnimationFrame(tick);
+    }
+  }
+  /* a cena respira sozinha enquanto o hero está na tela */
+  function motionAlive(){ return onScreen && !reduce; }
+
+  function kick(){
+    if(rafId === null && (onScreen || !reduce)) { lastTick = 0; rafId = requestAnimationFrame(tick); }
+  }
+  function onScroll(){ target = heroProgress(); kick(); }
+
+  new IntersectionObserver(function(es){
+    onScreen = es[0].isIntersecting;
+    if(onScreen) kick();
+  }, { threshold: 0 }).observe(hero);
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', function(){ sizeCanvas(); onScroll(); });
+
+  sizeCanvas();
+  target = shown = heroProgress();
+  loadStart = performance.now();
+  if(reduce){ loadK = 1; drawField(1, 0); paintBands(1, 0); }
+  else kick();
+
+  /* ---------------- revelações ---------------- */
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .15, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  /* ---------------- a onda assinatura ---------------- */
+  document.querySelectorAll('.wave').forEach(function(svg){
+    var amp = parseFloat(svg.dataset.amp) * 15, d = '', total = 0, px = 0, py = 23;
+    for(var x = 0; x <= 600; x += 10){
+      var y = 23 + Math.sin(x / 600 * Math.PI * 4) * amp * (1 - x / 1400);
+      d += (x === 0 ? 'M' : 'L') + x + ' ' + y.toFixed(1);
+      if(x > 0) total += Math.hypot(x - px, y - py);
+      px = x; py = y;
+    }
+    var path = svg.querySelector('path');
+    path.setAttribute('d', d);
+    svg.style.setProperty('--len', Math.ceil(total));
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ svg.classList.add('in'); } });
+    }, { threshold: .5 }).observe(svg);
+  });
+
+  /* ---------------- cilindros ---------------- */
+  var ITEM = 40;
+  var reelData = [
+    ['Grau 1','Grau 2','Grau 3','Grau 4','Grau 5'],
+    ['10 min','15 min','20 min','30 min','45 min'],
+    ['Nenhum','Dilatador','Pós-parto','Menopausa','Candidíase']
+  ];
+  var lockIdx = [2,1,1];
+  function onceVisible(el, fn){
+    if(!el) return;
+    var o = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ fn(); o.disconnect(); } });
+    }, { threshold: .3 });
+    o.observe(el);
+  }
+  onceVisible(document.getElementById('combo'), function(){
+    document.querySelectorAll('.reel').forEach(function(reel, i){
+      var strip = reel.querySelector('.strip'), list = reelData[i], html = '';
+      for(var r = 0; r < 7; r++){ list.forEach(function(v){ html += '<div>' + v + '</div>'; }); }
+      strip.innerHTML = html;
+      var total = (list.length * 6 + lockIdx[i]) * ITEM;
+      if(reduce){ strip.style.transform = 'translateY(-' + total + 'px)'; reel.classList.add('locked');
+        document.getElementById('comboOut').classList.add('on'); return; }
+      var pos = 0, speed = 32;
+      var timer = setInterval(function(){
+        pos += speed;
+        if(pos >= total - 320) speed = Math.max(6, speed * 0.9);
+        if(pos >= total){
+          pos = total; clearInterval(timer); reel.classList.add('locked');
+          if(i === 2) setTimeout(function(){ document.getElementById('comboOut').classList.add('on'); }, 280);
+        }
+        strip.style.transform = 'translateY(-' + pos + 'px)';
+      }, 16 + i * 4);
+    });
+  });
+
+  /* ---------------- avaliação ---------------- */
+  var perguntas = [
+    'Você já conseguiu ter uma relação com penetração alguma vez?',
+    'Onde exatamente você sente o desconforto?',
+    'A dor aparece mesmo quando você está lubrificada?',
+    'As suas pernas fecham sozinhas quando você tenta?',
+    'Você consegue fazer o exame ginecológico?',
+    'Você consegue usar absorvente interno ou coletor?',
+    'Já tentou usar dilatador sozinha? Como foi?',
+    'Como era falar sobre sexo na sua casa quando você era criança?',
+    'Como foi a sua primeira vez, ou a primeira tentativa?',
+    'Você já teve candidíase de repetição?',
+    'Quantos minutos por dia você consegue reservar?',
+    'Em qual período do dia você consegue praticar?',
+    'Você tem privacidade dentro de casa?',
+    'Quantos dias por semana você consegue manter?',
+    'O seu parceiro sabe o que você sente?',
+    'Como ele reage quando você não consegue?',
+    'O que você mais quer conseguir com o tratamento?'
+  ];
+  (function(){
+    var ul = document.getElementById('qflow'), h = '';
+    perguntas.forEach(function(q){ h += '<li>' + q + '</li>'; });
+    ul.innerHTML = h + h;
+  })();
+  onceVisible(document.getElementById('evalDemo'), function(){
+    var el = document.getElementById('qcount'), n = 0;
+    if(reduce){ el.textContent = '34'; return; }
+    var t = setInterval(function(){ n += 1; el.textContent = n; if(n >= 34) clearInterval(t); }, 42);
+  });
+
+  /* ---------------- documento ---------------- */
+  var pages = [
+`<div class="pk">Plano Sob Medida</div>
+<h4>Seu ponto de partida</h4>
+<p class="for">Preparado a partir da avaliação de Juliana M.</p>
+<div class="field"><span>Grau</span><b>3, a dor impede a penetração</b></div>
+<div class="field"><span>Tipo</span><b>Primário</b></div>
+<div class="field"><span>Origem provável</span><b>Educação sexual rígida e medo da primeira vez</b></div>
+<div class="field"><span>Já tentou</span><b>Dilatador sozinha, com dor</b></div>
+<div class="field"><span>Sua rotina</span><b>15 min · 4x por semana · à noite</b></div>
+<div class="field"><span>Seu objetivo</span><b>Ter relação sem dor</b></div>
+<div class="field"><span>Duração</span><b>16 semanas, em 4 fases</b></div>
+<div class="note">Como você já teve uma experiência dolorida com dilatador, o seu cronograma <b>atrasa</b> essa etapa e coloca duas semanas de ressignificação antes dela. Isso não é atraso: é o que impede o seu corpo de entrar na fase 4 já esperando dor.</div>`,
+`<div class="phase">Fase 1 de 4 · Preparo · Semanas 1 a 4</div>
+<table>
+<tr><td>Terça</td><td>Respiração diafragmática e relaxamento guiado</td><td>15 min</td></tr>
+<tr><td>Quinta</td><td>Consciência corporal, aula 4 do módulo 2</td><td>15 min</td></tr>
+<tr><td>Sábado</td><td>Respiração e alongamento de quadril</td><td>15 min</td></tr>
+<tr><td>Domingo</td><td>Registro da semana no seu diário</td><td>10 min</td></tr>
+</table>
+<div class="greenbox"><b>Você pode avançar quando</b>Conseguir completar os 15 minutos sem prender a respiração e perceber as pernas soltas ao fim da prática, em pelo menos 3 das 4 sessões da semana.</div>
+<div class="note"><b>Se travar:</b> repita a semana inteira. Repetir uma fase não é recomeçar, é o que faz a seguinte funcionar.</div>`
+  ];
+  var paper = document.getElementById('paper');
+  function showPage(i){
+    paper.innerHTML = pages[i];
+    paper.classList.remove('fade-sw'); void paper.offsetWidth; paper.classList.add('fade-sw');
+  }
+  showPage(0);
+  document.getElementById('tabs').addEventListener('click', function(e){
+    var b = e.target.closest('.tab'); if(!b) return;
+    document.querySelectorAll('.tab').forEach(function(t){ t.classList.remove('on'); });
+    b.classList.add('on'); showPage(+b.dataset.w);
+  });
+
+  /* ---------------- momento interativo: segure para avançar ---------------- */
+  (function(){
+    var box = document.getElementById('hold'), btn = document.getElementById('holdBtn');
+    var ring = box.querySelector('.fg');
+    var C = 414, prog = 0, holding = false, raf = null, last = 0, done = false;
+
+    function paint(){ ring.style.strokeDashoffset = (C * (1 - prog)).toFixed(1); }
+    function loop(now){
+      var dt = Math.min(80, now - (last || now)); last = now;
+      if(holding) prog += dt / 2300; else prog -= dt / 1400;
+      prog = Math.min(1, Math.max(0, prog));
+      paint();
+      if(prog >= 1 && !done){
+        done = true; holding = false;
+        box.classList.add('done');
+        btn.textContent = 'Fase liberada';
+      }
+      if((holding || prog > 0) && !done){ raf = requestAnimationFrame(loop); }
+      else { raf = null; last = 0; }
+    }
+    function start(e){ if(done) return; e.preventDefault(); holding = true; if(raf === null){ last = 0; raf = requestAnimationFrame(loop); } }
+    function stop(){ holding = false; if(raf === null && prog > 0 && !done){ last = 0; raf = requestAnimationFrame(loop); } }
+
+    if(reduce){ prog = 1; paint(); box.classList.add('done'); btn.textContent = 'Fase liberada'; return; }
+    btn.addEventListener('pointerdown', start);
+    window.addEventListener('pointerup', stop);
+    window.addEventListener('pointercancel', stop);
+    btn.addEventListener('keydown', function(e){ if(e.key === ' ' || e.key === 'Enter') start(e); });
+    btn.addEventListener('keyup', stop);
+    paint();
+  })();
+
+  /* ---------------- chat ---------------- */
+  var roteiro = [
+    { who:'me', t:'Amanda, tô na semana 6 e hoje doeu um pouquinho. Eu paro?' },
+    { who:'ai', t:'Você está na <b>Fase 2</b>, e nessa fase nada precisa entrar. Se doeu, provavelmente o toque foi além do externo. Volte para o exercício de terça e refaça a semana.' },
+    { who:'me', t:'Mas aí eu atraso tudo, né?' },
+    { who:'ai', t:'Não. O seu cronograma já prevê repetição de semana, as 16 semanas foram calculadas com isso dentro. Repetir aqui é o que faz a Fase 4 dar certo lá na frente.' },
+    { who:'me', t:'Ok. E quando eu vou saber que posso passar?' },
+    { who:'ai', t:'Quando você conseguir 3 sessões seguidas de toque externo sem o corpo se contrair sozinho. Está escrito no quadro verde da sua Fase 2.' }
+  ];
+  onceVisible(document.getElementById('chatDemo'), function(){
+    var box = document.getElementById('chat'), i = 0;
+    function add(m){
+      var d = document.createElement('div');
+      d.className = 'msg ' + m.who; d.innerHTML = m.t; box.appendChild(d);
+      while(box.children.length > 5) box.removeChild(box.firstChild);
+    }
+    function next(){
+      if(i >= roteiro.length) return;
+      var m = roteiro[i];
+      if(m.who === 'ai' && !reduce){
+        var t = document.createElement('div');
+        t.className = 'typing'; t.innerHTML = '<i></i><i></i><i></i>';
+        box.appendChild(t);
+        setTimeout(function(){ box.removeChild(t); add(m); i++; setTimeout(next, 1500); }, 1250);
+      } else { add(m); i++; setTimeout(next, reduce ? 0 : 900); }
+    }
+    next();
+  });
+
+  /* ---------------- pausa fora da aba ---------------- */
+  document.addEventListener('visibilitychange', function(){
+    document.body.classList.toggle('paused', document.hidden);
+    if(!document.hidden) kick();
+  });
+
+  /* ---------------- movimento reduzido ao vivo, nas duas direções ---------------- */
+  mq.addEventListener('change', function(e){
+    reduce = e.matches;
+    if(reduce){
+      loadK = 1;
+      document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
+      document.querySelectorAll('.wave').forEach(function(el){ el.classList.add('in'); });
+      drawField(shown, 0); paintBands(shown, 0);
+      if(rafId !== null){ cancelAnimationFrame(rafId); rafId = null; }
+    } else {
+      target = heroProgress(); kick();
+    }
+  });
+})();
+</script>
+<style>body.paused *,body.paused *::before,body.paused *::after{animation-play-state:paused!important}</style>
+</body>
+</html>
