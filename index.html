@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Plano Sob Medida — Método Mulheres Livres</title>
+<title>Plano Sob Medida — Programa Mulheres Livres</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -39,10 +39,10 @@ body::before{
   position:sticky;top:0;z-index:80;text-align:center;
   background:linear-gradient(90deg,#8E4E51,#B76A6B 50%,#8E4E51);
   background-size:220% 100%;animation:slide 7s linear infinite;
-  padding:15px 16px 16px;border-bottom:1px solid rgba(255,255,255,.16);
+  padding:14px 16px 0;border-bottom:1px solid rgba(255,255,255,.16);
 }
 .alert b{
-  display:block;font-family:var(--sans);font-weight:800;color:#FFF6F4;
+  display:block;font-weight:800;color:#FFF6F4;
   font-size:clamp(15px,4.3vw,21px);letter-spacing:.055em;line-height:1.22;
   text-transform:uppercase;text-shadow:0 1px 12px rgba(0,0,0,.3);
 }
@@ -51,7 +51,30 @@ body::before{
   background:#FFE9E6;margin-right:9px;vertical-align:middle;
   animation:blink 1.15s ease-in-out infinite;
 }
+.pbar{
+  margin:11px auto 0;max-width:420px;height:7px;border-radius:99px;
+  background:rgba(0,0,0,.3);overflow:hidden;position:relative;
+  box-shadow:inset 0 1px 3px rgba(0,0,0,.35);
+}
+.pbar i{
+  display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,#FFD9D3,#FFF1EE);
+  transition:width 2.6s cubic-bezier(.15,.75,.25,1);
+  position:relative;
+}
+.pbar i::after{
+  content:"";position:absolute;inset:0;border-radius:99px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.85),transparent);
+  animation:pulse 1.9s ease-in-out infinite;
+}
+.pmeta{
+  display:flex;justify-content:space-between;align-items:center;
+  max-width:420px;margin:5px auto 0;padding-bottom:9px;
+  font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(255,240,238,.72);font-weight:600;
+}
 @keyframes slide{to{background-position:220% 0}}
+@keyframes pulse{0%,100%{opacity:.15}50%{opacity:.6}}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.72)}}
 
 /* ---------- REVEAL ---------- */
@@ -62,22 +85,24 @@ body::before{
 
 /* ---------- CONTEXTO ---------- */
 .context{
-  margin:30px 0 40px;padding:16px 18px;border-radius:13px;
+  margin:30px 0 40px;padding:17px 19px;border-radius:13px;
   border:1px solid var(--line);background:rgba(37,28,26,.7);
-  font-size:14.5px;color:var(--muted);line-height:1.55;
-  display:flex;gap:12px;align-items:flex-start;
+  font-size:15px;color:var(--muted);line-height:1.58;
+  display:flex;gap:13px;align-items:flex-start;
 }
-.check{
-  flex:0 0 22px;height:22px;border-radius:50%;margin-top:2px;
-  background:var(--rose);color:#2A1416;display:flex;align-items:center;
-  justify-content:center;font-size:12px;font-weight:800;
+.spin{
+  flex:0 0 22px;height:22px;border-radius:50%;margin-top:3px;
+  border:2px solid rgba(233,165,166,.25);border-top-color:var(--rose);
+  animation:spin 1s linear infinite;
 }
+@keyframes spin{to{transform:rotate(360deg)}}
 .context b{color:var(--cream);font-weight:600}
+.context u{color:var(--rose-s);text-decoration:none;font-weight:600}
 
 /* ---------- HERO ---------- */
 h1{
   font-family:var(--serif);font-weight:600;letter-spacing:-.012em;
-  font-size:clamp(34px,8.4vw,54px);line-height:1.08;margin:0 0 18px;
+  font-size:clamp(34px,8.4vw,54px);line-height:1.08;margin:0 0 34px;
 }
 h1 em{font-style:italic;color:var(--rose);position:relative}
 h1 em::after{
@@ -87,8 +112,6 @@ h1 em::after{
   animation:underline 1.5s var(--ease) .45s forwards;
 }
 @keyframes underline{to{transform:scaleX(1)}}
-.sub{font-size:18.5px;color:var(--muted);margin:0 0 34px;line-height:1.55}
-.sub b{color:var(--cream);font-weight:600}
 
 /* ---------- CARTA ---------- */
 .letter p{margin:0 0 19px}
@@ -123,6 +146,7 @@ h2{
 }
 h2 em{font-style:italic;color:var(--rose)}
 .lead{color:var(--muted);margin:0 0 6px;font-size:17px}
+.lead b{color:var(--cream);font-weight:600}
 
 /* ---------- COMBINAÇÃO ---------- */
 .combo{
@@ -131,30 +155,34 @@ h2 em{font-style:italic;color:var(--rose)}
   padding:26px 20px 24px;
 }
 .combo-h{
-  text-align:center;font-size:12px;letter-spacing:.2em;text-transform:uppercase;
+  text-align:center;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--rose);font-weight:700;margin-bottom:20px;
 }
 .reels{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .reel{
   background:var(--bg);border:1px solid var(--line2);border-radius:11px;
-  height:96px;overflow:hidden;position:relative;text-align:center;
+  overflow:hidden;text-align:center;transition:border-color .4s var(--ease),box-shadow .4s var(--ease);
 }
 .reel .cap{
-  position:absolute;top:9px;left:0;right:0;font-size:9.5px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--dim);z-index:2;
+  font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);
+  padding:9px 4px 8px;border-bottom:1px solid var(--line);font-weight:700;
 }
-.reel .strip{position:absolute;top:34px;left:0;right:0;transition:transform .1s linear}
-.reel .strip div{height:30px;line-height:30px;font-size:14px;color:var(--cream);font-weight:600;padding:0 6px}
-.reel.locked{border-color:var(--rose);box-shadow:0 0 0 1px var(--rose-g),0 10px 32px rgba(233,165,166,.14)}
+.reel .win{height:38px;overflow:hidden;position:relative}
+.reel .strip{position:absolute;top:0;left:0;right:0}
+.reel .strip div{
+  height:38px;line-height:38px;font-size:13.5px;color:var(--cream);
+  font-weight:600;padding:0 5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.reel.locked{border-color:var(--rose);box-shadow:0 8px 30px rgba(233,165,166,.16)}
 .reel.locked .strip div{color:var(--rose-s)}
 .combo-out{
-  margin-top:16px;border-top:1px dashed var(--line2);padding-top:16px;
+  margin-top:18px;border-top:1px dashed var(--line2);padding-top:17px;
   text-align:center;opacity:0;transform:translateY(10px);
   transition:opacity .6s var(--ease),transform .6s var(--ease);
 }
 .combo-out.on{opacity:1;transform:none}
-.combo-out span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
-.combo-out b{display:block;font-family:var(--serif);font-size:26px;color:var(--rose-s);font-weight:600;margin-top:4px}
+.combo-out span{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.combo-out b{display:block;font-family:var(--serif);font-size:26px;color:var(--rose-s);font-weight:600;margin-top:5px}
 
 /* ---------- ENTREGÁVEL ---------- */
 .deliv{margin-top:56px}
@@ -169,49 +197,52 @@ h2 em{font-style:italic;color:var(--rose)}
   font-family:var(--serif);font-size:14px;font-weight:600;
 }
 .tag{
-  display:inline-block;margin-top:16px;background:var(--rose-g);
+  display:inline-block;margin-top:16px;margin-right:8px;background:var(--rose-g);
   border:1px solid rgba(233,165,166,.32);color:var(--rose-s);
   border-radius:99px;padding:6px 14px;font-size:12.5px;font-weight:600;
 }
 .demo{
   margin-top:22px;border:1px solid var(--line);border-radius:18px;
   background:linear-gradient(180deg,var(--surface),rgba(29,22,20,.55));
-  padding:20px 18px;
+  padding:22px 18px;
 }
-.demo-cap{
-  text-align:center;font-size:12.5px;color:var(--dim);
-  font-style:italic;margin:14px 0 0;
-}
+.demo-cap{text-align:center;font-size:12.5px;color:var(--dim);font-style:italic;margin:14px 0 0}
 
-/* --- demo 1: formulário --- */
-.form-bar{height:4px;background:var(--line2);border-radius:99px;overflow:hidden;margin-bottom:18px}
-.form-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--rose-d),var(--rose));
-  border-radius:99px;transition:width .55s var(--ease)}
-.q{min-height:186px}
-.q .step{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:8px}
-.q h5{margin:0 0 15px;font-size:17.5px;font-weight:600;line-height:1.35;color:var(--cream);font-family:var(--sans)}
-.opt{
-  border:1px solid var(--line2);border-radius:10px;padding:11px 14px;
-  margin-bottom:9px;font-size:14.5px;color:var(--muted);
-  display:flex;align-items:center;gap:11px;
-  transition:all .35s var(--ease);background:rgba(21,15,14,.5);
+/* --- demo 1: avaliação --- */
+.eval-top{text-align:center;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.eval-top b{
+  display:block;font-family:var(--serif);font-size:clamp(46px,13vw,64px);
+  line-height:1;font-weight:600;color:var(--rose);letter-spacing:-.02em;
 }
-.opt i{
-  flex:0 0 16px;height:16px;border-radius:50%;border:1.5px solid var(--line2);
-  transition:all .3s var(--ease);position:relative;
+.eval-top span{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);font-weight:600}
+.cats{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:18px 0 4px}
+.cat{
+  border:1px solid var(--line2);border-radius:10px;padding:11px 13px;
+  background:rgba(21,15,14,.45);display:flex;justify-content:space-between;
+  align-items:center;gap:8px;
 }
-.opt.sel{border-color:var(--rose);color:var(--cream);background:var(--rose-g)}
-.opt.sel i{border-color:var(--rose);background:var(--rose)}
-.opt.sel i::after{content:"";position:absolute;inset:4px;border-radius:50%;background:#2A1416}
-.q.out{opacity:0;transform:translateX(-14px);transition:opacity .3s,transform .3s}
-.q.in-r{animation:qin .45s var(--ease)}
-@keyframes qin{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+.cat span{font-size:13.5px;color:var(--muted);line-height:1.25}
+.cat i{font-style:normal;font-family:var(--serif);font-size:19px;color:var(--rose);font-weight:600}
+.qflow{
+  margin-top:18px;height:132px;overflow:hidden;position:relative;
+  -webkit-mask-image:linear-gradient(transparent,#000 22%,#000 76%,transparent);
+  mask-image:linear-gradient(transparent,#000 22%,#000 76%,transparent);
+}
+.qflow ul{margin:0;padding:0;list-style:none;animation:flow 34s linear infinite}
+.qflow li{
+  padding:9px 0 9px 20px;font-size:14.5px;color:var(--dim);font-style:italic;
+  position:relative;line-height:1.4;
+}
+.qflow li::before{
+  content:"";position:absolute;left:0;top:17px;width:10px;height:1px;background:var(--rose-d);
+}
+@keyframes flow{to{transform:translateY(-50%)}}
 
 /* --- demo 2: documento --- */
-.tabs{display:flex;gap:7px;margin-bottom:16px;overflow-x:auto;padding-bottom:3px}
+.tabs{display:flex;gap:7px;margin-bottom:16px}
 .tab{
   flex:0 0 auto;border:1px solid var(--line2);background:transparent;color:var(--muted);
-  border-radius:99px;padding:8px 15px;font-size:13px;font-weight:600;cursor:pointer;
+  border-radius:99px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;
   font-family:var(--sans);transition:all .28s var(--ease);white-space:nowrap;
 }
 .tab:hover{border-color:var(--rose-d);color:var(--cream)}
@@ -240,9 +271,8 @@ h2 em{font-style:italic;color:var(--rose)}
 @keyframes fsw{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:none}}
 
 /* --- demo 3: chat --- */
-.chat{min-height:270px;display:flex;flex-direction:column;gap:10px;justify-content:flex-end}
-.msg{max-width:82%;padding:11px 14px;border-radius:15px;font-size:14.5px;line-height:1.5;
-  animation:pop .38s var(--ease);}
+.chat{min-height:280px;display:flex;flex-direction:column;gap:10px;justify-content:flex-end}
+.msg{max-width:84%;padding:11px 14px;border-radius:15px;font-size:14.5px;line-height:1.5;animation:pop .38s var(--ease)}
 .msg.me{align-self:flex-end;background:var(--rose);color:#2A1416;border-bottom-right-radius:5px;font-weight:500}
 .msg.ai{align-self:flex-start;background:var(--surface2);border:1px solid var(--line2);
   color:var(--cream);border-bottom-left-radius:5px}
@@ -260,40 +290,20 @@ h2 em{font-style:italic;color:var(--rose)}
 .chat-head span{font-size:11.5px;color:#7FBF8F}
 .chat-head span i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#7FBF8F;margin-right:5px}
 
-/* --- demo 4: encontros --- */
-.months{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:18px}
-.mo{
-  aspect-ratio:1;border:1px solid var(--line2);border-radius:9px;display:flex;
-  align-items:center;justify-content:center;font-size:11px;color:var(--dim);
-  font-weight:600;letter-spacing:.03em;transition:all .5s var(--ease);
-}
-.mo.on{border-color:var(--rose);color:var(--rose-s);background:var(--rose-g)}
-.mo.now{background:var(--rose);border-color:var(--rose);color:#2A1416;
-  box-shadow:0 0 0 4px rgba(233,165,166,.13);transform:scale(1.07)}
-.agenda{border-top:1px solid var(--line);padding-top:16px}
-.ag{display:flex;gap:12px;padding:10px 0;font-size:14.5px;align-items:baseline;
-  border-bottom:1px solid rgba(59,44,41,.6)}
-.ag:last-child{border-bottom:0}
-.ag i{flex:0 0 42px;font-style:normal;font-size:11px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--rose);font-weight:700}
-.ag span{color:var(--muted)}
-.ag.hi span{color:var(--cream);font-weight:500}
-
 /* ---------- RECAP ---------- */
 .recap{border:1px solid var(--line);border-radius:18px;background:var(--surface);padding:24px 20px;margin-top:34px}
-.recap h3{margin:0 0 16px;font-family:var(--serif);font-size:24px;font-weight:600}
+.recap h3{margin:0 0 14px;font-family:var(--serif);font-size:25px;font-weight:600}
+.recap ul{margin:0;padding:0}
 .recap li{
-  list-style:none;padding:11px 0 11px 32px;position:relative;
+  list-style:none;padding:12px 0 12px 32px;position:relative;
   border-bottom:1px solid rgba(59,44,41,.7);font-size:15.5px;color:var(--muted);
 }
 .recap li:last-child{border-bottom:0}
 .recap li b{color:var(--cream);font-weight:600}
 .recap li::before{
-  content:"";position:absolute;left:2px;top:17px;width:15px;height:8px;
-  border-left:2px solid var(--rose);border-bottom:2px solid var(--rose);
-  transform:rotate(-45deg);
+  content:"";position:absolute;left:2px;top:18px;width:15px;height:8px;
+  border-left:2px solid var(--rose);border-bottom:2px solid var(--rose);transform:rotate(-45deg);
 }
-.recap ul{margin:0;padding:0}
 
 /* ---------- PASSOS ---------- */
 .steps{margin-top:28px;position:relative;padding-left:24px}
@@ -362,15 +372,13 @@ footer{margin-top:48px;padding:26px 0 130px;border-top:1px solid var(--line);
 .sticky.on{transform:none}
 .sticky .p{font-size:13px;color:var(--muted);line-height:1.25;text-align:right;flex:0 0 auto}
 .sticky .p b{display:block;color:var(--cream);font-size:15.5px;font-weight:700}
-.sticky a{
-  background:var(--rose);color:#2A1416;text-decoration:none;font-weight:800;
-  font-size:14.5px;padding:14px 20px;border-radius:11px;white-space:nowrap;
-}
+.sticky a{background:var(--rose);color:#2A1416;text-decoration:none;font-weight:800;
+  font-size:14.5px;padding:14px 20px;border-radius:11px;white-space:nowrap}
 
 @media (max-width:520px){
   body{font-size:16.5px}
-  .stats{grid-template-columns:repeat(3,1fr)}
   .stat{padding:14px 6px}
+  .cats{grid-template-columns:1fr}
   .sticky .p{display:none}
   .sticky a{width:100%;text-align:center}
 }
@@ -382,26 +390,27 @@ footer{margin-top:48px;padding:26px 0 130px;border-top:1px solid var(--line);
 </head>
 <body>
 
-<div class="alert"><b><span class="dot"></span>Não feche essa página ainda</b></div>
+<div class="alert">
+  <b><span class="dot"></span>Não feche essa página ainda</b>
+  <div class="pbar"><i id="pbar"></i></div>
+  <div class="pmeta"><span>Processando</span><span id="ppct">0%</span></div>
+</div>
 
 <div class="wrap">
 
   <div class="context rv">
-    <div class="check">&#10003;</div>
-    <div><b>Sua compra do Método Mulheres Livres está confirmada.</b> O acesso chega no seu e-mail em instantes e você não precisa fazer nada aqui para recebê-lo.</div>
+    <div class="spin"></div>
+    <div><b>Estamos confirmando a sua matrícula no Programa Mulheres Livres.</b> Em instantes você vai receber o acesso no seu e-mail — mas <u>preste muita atenção no recado abaixo</u>.</div>
   </div>
 
-  <h1 class="rv">Agora imagine o método já <em>montado para o seu caso</em>.</h1>
-  <p class="sub rv d1">Você abre o documento, olha o dia de hoje e faz o que está escrito ali. <b>Sem decidir nada.</b></p>
+  <h1 class="rv">Agora imagine o método montado <em>só para o seu caso</em>.</h1>
 
   <div class="letter">
-    <p class="rv d2">Parabéns pela decisão. A partir de agora o Método Mulheres Livres é seu: todas as aulas, todos os exercícios, na ordem certa, para você aplicar em você mesma, dentro de casa, no seu tempo.</p>
+    <p class="rv d1">Antes de você entrar, eu quero te mostrar uma coisa que só existe nesta página.</p>
 
-    <p class="rv d2">Antes de você entrar, eu quero te mostrar uma coisa que só existe nesta página.</p>
+    <p class="rv d2">Quando uma mulher senta na minha frente numa consulta, boa parte do meu trabalho não é ensinar exercício. É olhar a história dela, entender em que ponto o corpo está hoje e montar a ordem: o que fazer primeiro, quantos minutos, em quais dias da semana, o que ainda esperar — e, principalmente, <em>quando ela pode passar para a próxima fase</em>.</p>
 
-    <p class="rv d3">Quando uma mulher senta na minha frente numa consulta, boa parte do meu trabalho não é ensinar exercício. É olhar a história dela, entender em que ponto o corpo está hoje e montar a ordem: o que fazer primeiro, quantos minutos, em quais dias da semana, o que ainda esperar — e, principalmente, <em>quando ela pode passar para a próxima fase</em>.</p>
-
-    <p class="rv d3">Essa parte do meu trabalho eu consegui colocar dentro de um documento. Um documento feito a partir das suas respostas, com o seu nome, o seu ponto de partida e o seu calendário.</p>
+    <p class="rv d3">Essa parte do meu trabalho eu consegui colocar dentro de um cronograma. Um cronograma feito a partir das suas respostas, com o seu nome, o seu ponto de partida e os seus horários.</p>
 
     <div class="stats rv d4">
       <div class="stat"><b>10+</b><span>anos de<br>consultório</span></div>
@@ -421,18 +430,18 @@ footer{margin-top:48px;padding:26px 0 130px;border-top:1px solid var(--line);
 
   <hr class="rule">
 
-  <h2 class="rv">Não existe um plano. Existe <em>o seu</em>.</h2>
+  <h2 class="rv">Cada caso é <em>um caso</em>.</h2>
   <p class="lead rv d1">Duas mulheres com a mesma dor podem precisar de caminhos completamente diferentes. O que define o seu é o cruzamento de tudo o que você vai me contar.</p>
 
   <div class="combo rv d2" id="combo">
     <div class="combo-h">Montando o seu cruzamento</div>
     <div class="reels">
-      <div class="reel" data-reel="0"><div class="cap">Grau</div><div class="strip"></div></div>
-      <div class="reel" data-reel="1"><div class="cap">Rotina</div><div class="strip"></div></div>
-      <div class="reel" data-reel="2"><div class="cap">Histórico</div><div class="strip"></div></div>
+      <div class="reel"><div class="cap">Grau</div><div class="win"><div class="strip"></div></div></div>
+      <div class="reel"><div class="cap">Rotina</div><div class="win"><div class="strip"></div></div></div>
+      <div class="reel"><div class="cap">Histórico</div><div class="win"><div class="strip"></div></div></div>
     </div>
     <div class="combo-out" id="comboOut">
-      <span>O plano que corresponde a você</span>
+      <span>O cronograma que corresponde a você</span>
       <b>16 semanas, em 4 fases</b>
     </div>
   </div>
@@ -441,39 +450,44 @@ footer{margin-top:48px;padding:26px 0 130px;border-top:1px solid var(--line);
   <div class="deliv">
     <div class="dnum rv"><i>1</i> Avaliação Sob Medida</div>
     <h2 class="rv">Primeiro eu preciso <em>te conhecer</em>.</h2>
-    <p class="lead rv d1">Mais de 30 perguntas: sua história, o que você já tentou, o que consegue e o que ainda não consegue fazer hoje, quanto tempo você tem por dia, como está a sua relação. É o mesmo levantamento que eu faria com você numa primeira consulta — e é ele que faz o seu plano ser seu, e não de outra mulher.</p>
-    <div class="tag rv d1">Você responde agora mesmo, leva 8 minutos</div>
+    <p class="lead rv d1">Você vai passar por uma avaliação minuciosa, dividida em blocos: a sua história, o que o seu corpo consegue e o que ainda não consegue fazer hoje, o que você já tentou antes, a sua rotina e os seus horários, como está a sua relação e onde você quer chegar. É o mesmo levantamento que eu faria com você numa primeira consulta — e é ele que faz o seu cronograma ser <b>seu</b>, e não o de outra mulher.</p>
+    <div class="tag rv d1">Liberada assim que você garantir o plano</div>
+    <div class="tag rv d1">Aula Inaugural liberada junto</div>
 
-    <div class="demo rv d2" id="formDemo">
-      <div class="form-bar"><i id="fbar"></i></div>
-      <div class="q" id="q">
-        <div class="step">Pergunta 1 de 34</div>
-        <h5>Onde você sente a dor?</h5>
-        <div class="opt"><i></i>Logo na entrada, antes de qualquer coisa passar</div>
-        <div class="opt"><i></i>Um pouco mais para dentro</div>
-        <div class="opt"><i></i>Sinto ardência, mas não consigo localizar</div>
+    <div class="demo rv d2" id="evalDemo">
+      <div class="eval-top">
+        <b id="qcount">0</b>
+        <span>perguntas na sua avaliação</span>
       </div>
-      <p class="demo-cap">Trecho ilustrativo da avaliação.</p>
+      <div class="cats" id="cats">
+        <div class="cat"><span>Sua história</span><i>8</i></div>
+        <div class="cat"><span>Seu corpo hoje</span><i>7</i></div>
+        <div class="cat"><span>O que já tentou</span><i>4</i></div>
+        <div class="cat"><span>Sua rotina</span><i>6</i></div>
+        <div class="cat"><span>Sua relação</span><i>5</i></div>
+        <div class="cat"><span>Seu objetivo</span><i>4</i></div>
+      </div>
+      <div class="qflow">
+        <ul id="qflow"></ul>
+      </div>
+      <p class="demo-cap">Alguns dos temas que a avaliação percorre.</p>
     </div>
   </div>
 
   <!-- ENTREGÁVEL 2 -->
   <div class="deliv">
-    <div class="dnum rv"><i>2</i> Seu plano, semana por semana</div>
-    <h2 class="rv">E aí o documento chega <em>pronto</em>.</h2>
-    <p class="lead rv d1">Nada de “pratique com regularidade”. O plano diz o dia, o horário, o exercício e o tempo — encaixado nos horários que <b style="color:var(--cream)">você</b> declarou. Cada fase vem com o sinal do que você precisa sentir antes de avançar e com o que fazer na semana em que nada parecer acontecer.</p>
+    <div class="dnum rv"><i>2</i> Seu cronograma personalizado</div>
+    <h2 class="rv">A partir das suas respostas, eu monto <em>o seu cronograma</em>.</h2>
+    <p class="lead rv d1">Semana por semana, do primeiro dia até o último: o dia, o exercício, o tempo e a fase. Cada fase vem com o sinal exato do que você precisa sentir antes de avançar — e com o que fazer na semana em que nada parecer acontecer. Você para de decidir o que fazer e passa só a <b>executar</b>.</p>
     <div class="tag rv d1">Na sua mão em até 3 dias</div>
 
     <div class="demo rv d2">
       <div class="tabs" id="tabs">
-        <button class="tab on" data-w="0">Capa</button>
-        <button class="tab" data-w="1">Semana 1</button>
-        <button class="tab" data-w="2">Semana 5</button>
-        <button class="tab" data-w="3">Semana 9</button>
-        <button class="tab" data-w="4">Semana 14</button>
+        <button class="tab on" data-w="0">Seu perfil</button>
+        <button class="tab" data-w="1">Uma semana</button>
       </div>
       <div class="paper" id="paper"></div>
-      <p class="demo-cap">Nome e respostas ilustrativos. Cada plano é montado a partir da avaliação.</p>
+      <p class="demo-cap">Nome e respostas ilustrativos. Cada cronograma é montado a partir da avaliação.</p>
     </div>
   </div>
 
@@ -481,33 +495,15 @@ footer{margin-top:48px;padding:26px 0 130px;border-top:1px solid var(--line);
   <div class="deliv">
     <div class="dnum rv"><i>3</i> Tira-dúvidas 24 horas</div>
     <h2 class="rv">E às <em>23h de um domingo</em>?</h2>
-    <p class="lead rv d1">É quase sempre nesse horário que a dúvida aparece. Você vai ter uma assistente treinada no seu plano, disponível a qualquer hora — ela sabe em que semana você está, o que você já fez e o que vem depois.</p>
+    <p class="lead rv d1">É quase sempre nesse horário que a dúvida aparece. Você vai ter uma inteligência artificial treinada no meu método e no <b>seu</b> cronograma, disponível a qualquer hora — ela sabe em que semana você está, o que você já fez e o que vem depois.</p>
     <div class="tag rv d1">Todos os dias, a qualquer hora</div>
 
     <div class="demo rv d2" id="chatDemo">
       <div class="chat-head">
-        <div class="av">&#128172;</div>
-        <div><b>Assistente do seu plano</b><span><i></i>online agora</span></div>
+        <div class="av">&#10024;</div>
+        <div><b>Assistente do seu cronograma</b><span><i></i>online agora</span></div>
       </div>
       <div class="chat" id="chat"></div>
-    </div>
-  </div>
-
-  <!-- ENTREGÁVEL 4 -->
-  <div class="deliv">
-    <div class="dnum rv"><i>4</i> Encontros mensais</div>
-    <h2 class="rv">Uma vez por mês, você me encontra <em>ao vivo</em>.</h2>
-    <p class="lead rv d1">Um tema de saúde íntima por encontro e espaço aberto para perguntas — durante 12 meses. Se você não puder estar, a gravação fica salva na sua área.</p>
-    <div class="tag rv d1">12 encontros ao longo do ano</div>
-
-    <div class="demo rv d2" id="calDemo">
-      <div class="months" id="months"></div>
-      <div class="agenda">
-        <div class="ag hi"><i>Mês 1</i><span>Como o medo se instala no corpo — e como ele sai</span></div>
-        <div class="ag"><i>Mês 2</i><span>Conversando com o parceiro sem virar cobrança</span></div>
-        <div class="ag"><i>Mês 3</i><span>Lubrificação, hormônios e o que ninguém te contou</span></div>
-        <div class="ag"><i>Mês 4</i><span>Voltando ao ginecologista sem pânico</span></div>
-      </div>
     </div>
   </div>
 
@@ -516,11 +512,10 @@ footer{margin-top:48px;padding:26px 0 130px;border-top:1px solid var(--line);
   <div class="recap rv">
     <h3>O que você leva hoje</h3>
     <ul>
-      <li><b>Avaliação Sob Medida</b> com mais de 30 perguntas, liberada agora</li>
-      <li><b>Aula Inaugural</b> ensinando a ler e usar o seu plano, também agora</li>
-      <li><b>Seu plano semana por semana</b>, com critérios de avanço, em até 3 dias</li>
-      <li><b>Tira-dúvidas 24h</b> treinado no seu plano</li>
-      <li><b>12 encontros mensais ao vivo</b> comigo, com gravações salvas</li>
+      <li><b>Avaliação Sob Medida</b> — os blocos de perguntas que definem o seu ponto de partida, liberada agora</li>
+      <li><b>Aula Inaugural</b> — eu te ensinando a ler e a usar o seu cronograma, também liberada agora</li>
+      <li><b>Seu cronograma personalizado</b> — semana por semana, com os critérios de avanço, em até 3 dias</li>
+      <li><b>Tira-dúvidas 24h</b> — a IA treinada no seu cronograma, durante todo o percurso</li>
     </ul>
   </div>
 
@@ -528,27 +523,36 @@ footer{margin-top:48px;padding:26px 0 130px;border-top:1px solid var(--line);
 
   <h2 class="rv">Como funciona a partir de agora</h2>
   <div class="steps">
-    <div class="step-i rv"><div class="when">Hoje</div><p>Você responde a avaliação e já assiste à <b>Aula Inaugural</b>. Enquanto o plano é montado, avança nos módulos 1 e 2 do curso, que são teóricos.</p></div>
-    <div class="step-i rv d1"><div class="when">Em até 3 dias</div><p>Seu plano chega pronto, com o seu nome, o seu ponto de partida e o calendário encaixado nos <b>seus</b> horários.</p></div>
-    <div class="step-i rv d2"><div class="when">Na sua primeira semana</div><p>Você abre o documento e faz o que está ali. <b>Sem adivinhar por onde começar.</b></p></div>
+    <div class="step-i rv">
+      <div class="when">Hoje</div>
+      <p>Você garante o seu <b>Plano Sob Medida</b> nesta condição e já faz a avaliação completa, se quiser — ela fica liberada na hora, junto com a Aula Inaugural.</p>
+    </div>
+    <div class="step-i rv d1">
+      <div class="when">Assim que você responder</div>
+      <p>Eu recebo as suas respostas, identifico o seu ponto de partida e <b>monto o seu cronograma</b>.</p>
+    </div>
+    <div class="step-i rv d2">
+      <div class="when">Em até 3 dias</div>
+      <p>O seu cronograma chega pronto, com o seu nome, as suas fases e os dias encaixados nos <b>seus</b> horários.</p>
+    </div>
   </div>
 
   <div class="offer rv" id="offer">
     <p class="name">Plano <em>Sob Medida</em></p>
     <p class="once">Esta condição existe apenas nesta página.</p>
     <!-- PLACEHOLDER DE PREÇO: confirmar parcelamento e juros da plataforma -->
-    <p class="price"><small>12x de R$</small>59,70</p>
-    <p class="cash">ou R$ 597 à vista</p>
+    <p class="price"><small>12x de R$</small>39,70</p>
+    <p class="cash">ou R$ 397 à vista</p>
     <!-- PLACEHOLDER: URL de aceite do one-click -->
     <a class="btn" href="#">SIM, QUERO MEU PLANO SOB MEDIDA</a>
     <div class="guarantee">
       <div class="seal">7</div>
-      <div><b>Sete dias de garantia, contados do dia em que o seu plano chegar.</b> O prazo não começa hoje — começa quando você tem o documento na mão. Se não fizer sentido para você, devolvemos o valor inteiro.</div>
+      <div><b>Sete dias de garantia, contados do dia em que o seu cronograma chegar.</b> O prazo não começa hoje — começa quando você tem o documento na mão. Se não fizer sentido para você, devolvemos o valor inteiro.</div>
     </div>
   </div>
 
   <div class="close">
-    <p class="rv">Se você preferir seguir sem o plano, tudo bem — o Método continua seu, inteiro, do mesmo jeito.</p>
+    <p class="rv">Se você preferir seguir sem o plano, tudo bem — o Programa continua seu, inteiro, do mesmo jeito.</p>
     <p class="rv">Mas se ao ler isto você pensou <em>“eu queria isso já montado pra mim”</em>, é exatamente para isso que o Plano Sob Medida existe.</p>
     <p class="rv" style="margin-bottom:0">Te vejo na Aula Inaugural.</p>
     <div class="sig rv">
@@ -567,7 +571,7 @@ footer{margin-top:48px;padding:26px 0 130px;border-top:1px solid var(--line);
 </div>
 
 <div class="sticky" id="sticky">
-  <div class="p">Plano Sob Medida<b>12x de R$ 59,70</b></div>
+  <div class="p">Plano Sob Medida<b>12x de R$ 39,70</b></div>
   <a href="#offer">QUERO O MEU PLANO</a>
 </div>
 
@@ -575,22 +579,33 @@ footer{margin-top:48px;padding:26px 0 130px;border-top:1px solid var(--line);
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- barra do topo: vai até 90% e trava ---------- */
+  (function(){
+    var bar = document.getElementById('pbar'), pct = document.getElementById('ppct');
+    setTimeout(function(){ bar.style.width = '90%'; }, 350);
+    if(reduce){ pct.textContent = '90%'; return; }
+    var v = 0, t = setInterval(function(){
+      v += 1.6; if(v >= 90){ v = 90; clearInterval(t); }
+      pct.textContent = Math.round(v) + '%';
+    }, 48);
+  })();
+
   /* ---------- reveal ---------- */
   var io = new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   },{threshold:.16,rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 
-  /* ---------- roda uma vez quando entra na tela ---------- */
   function onceVisible(el, fn){
     if(!el) return;
     var o = new IntersectionObserver(function(es){
       es.forEach(function(e){ if(e.isIntersecting){ fn(); o.disconnect(); } });
-    },{threshold:.35});
+    },{threshold:.3});
     o.observe(el);
   }
 
   /* ---------- combinação ---------- */
+  var ITEM = 38;
   var reelData = [
     ['Grau 1','Grau 2','Grau 3','Grau 4','Grau 5'],
     ['10 min','15 min','20 min','30 min','45 min'],
@@ -599,53 +614,57 @@ footer{margin-top:48px;padding:26px 0 130px;border-top:1px solid var(--line);
   var lockIdx = [2,1,1];
   onceVisible(document.getElementById('combo'), function(){
     document.querySelectorAll('.reel').forEach(function(reel,i){
-      var strip = reel.querySelector('.strip');
-      var list = reelData[i], html='';
+      var strip = reel.querySelector('.strip'), list = reelData[i], html = '';
       for(var r=0;r<7;r++){ list.forEach(function(v){ html += '<div>'+v+'</div>'; }); }
       strip.innerHTML = html;
-      if(reduce){ reel.classList.add('locked'); strip.style.transform='translateY(-'+((list.length*6+lockIdx[i])*30)+'px)'; return; }
-      var pos = 0, speed = 26 + i*4, total = (list.length*6 + lockIdx[i])*30;
+      var total = (list.length*6 + lockIdx[i]) * ITEM;
+      if(reduce){ strip.style.transform = 'translateY(-'+total+'px)'; reel.classList.add('locked'); return; }
+      var pos = 0, speed = 30;
       var timer = setInterval(function(){
         pos += speed;
-        if(pos >= total - 240) speed = Math.max(5, speed*0.9);
-        if(pos >= total){ pos = total; clearInterval(timer); reel.classList.add('locked');
-          if(i===2) setTimeout(function(){ document.getElementById('comboOut').classList.add('on'); },260); }
+        if(pos >= total - 300) speed = Math.max(6, speed * 0.9);
+        if(pos >= total){
+          pos = total; clearInterval(timer); reel.classList.add('locked');
+          if(i === 2) setTimeout(function(){ document.getElementById('comboOut').classList.add('on'); }, 280);
+        }
         strip.style.transform = 'translateY(-'+pos+'px)';
-      }, 16 + i*120/10);
-      setTimeout(function(){}, 0);
+      }, 16 + i*4);
     });
     if(reduce) document.getElementById('comboOut').classList.add('on');
   });
 
-  /* ---------- formulário ---------- */
-  var qs = [
-    {n:1, q:'Onde você sente a dor?', o:['Logo na entrada, antes de qualquer coisa passar','Um pouco mais para dentro','Sinto ardência, mas não consigo localizar'], s:0},
-    {n:7, q:'As suas pernas fecham sozinhas quando você tenta?', o:['Sim, eu não consigo controlar','Às vezes, quando fico tensa','Não'], s:0},
-    {n:14, q:'Você já tentou usar dilatador sozinha?', o:['Sim, e doeu muito','Sim, sem problema','Nunca usei'], s:0},
-    {n:22, q:'Quanto tempo por dia você consegue reservar?', o:['Menos de 10 minutos','Entre 10 e 20 minutos','Mais de 30 minutos'], s:1},
-    {n:29, q:'Em quais dias da semana você consegue ser constante?', o:['2 a 3 dias','4 a 5 dias','Todos os dias'], s:1},
-    {n:34, q:'O que você mais quer conseguir?', o:['Ter relação sem dor','Fazer o exame ginecológico','Engravidar'], s:0}
+  /* ---------- avaliação: contador + fluxo de perguntas ---------- */
+  var perguntas = [
+    'Você já conseguiu ter uma relação com penetração alguma vez?',
+    'Onde exatamente você sente o desconforto?',
+    'A dor aparece mesmo quando você está lubrificada?',
+    'As suas pernas fecham sozinhas quando você tenta?',
+    'Você consegue fazer o exame ginecológico?',
+    'Você consegue usar absorvente interno ou coletor?',
+    'Já tentou usar dilatador sozinha? Como foi?',
+    'Como era falar sobre sexo na sua casa quando você era criança?',
+    'Como foi a sua primeira vez, ou a primeira tentativa?',
+    'Você já teve candidíase de repetição?',
+    'Quantos minutos por dia você consegue reservar?',
+    'Em qual período do dia você consegue praticar?',
+    'Você tem privacidade dentro de casa?',
+    'Quantos dias por semana você consegue manter?',
+    'O seu parceiro sabe o que você sente?',
+    'Como ele reage quando você não consegue?',
+    'O que você mais quer conseguir com o tratamento?'
   ];
-  function renderQ(d){
-    var box = document.getElementById('q');
-    var h = '<div class="step">Pergunta '+d.n+' de 34</div><h5>'+d.q+'</h5>';
-    d.o.forEach(function(t){ h += '<div class="opt"><i></i>'+t+'</div>'; });
-    box.innerHTML = h; box.classList.remove('out'); box.classList.add('in-r');
-    setTimeout(function(){ box.classList.remove('in-r'); }, 460);
-    document.getElementById('fbar').style.width = Math.round(d.n/34*100)+'%';
-    setTimeout(function(){
-      var opts = box.querySelectorAll('.opt');
-      if(opts[d.s]) opts[d.s].classList.add('sel');
-    }, 1050);
-  }
-  onceVisible(document.getElementById('formDemo'), function(){
-    var i = 0; renderQ(qs[0]);
-    if(reduce) return;
-    setInterval(function(){
-      var box = document.getElementById('q');
-      box.classList.add('out');
-      setTimeout(function(){ i = (i+1) % qs.length; renderQ(qs[i]); }, 320);
-    }, 2900);
+  (function(){
+    var ul = document.getElementById('qflow'), h = '';
+    perguntas.forEach(function(q){ h += '<li>'+q+'</li>'; });
+    ul.innerHTML = h + h; /* duplicado para o loop contínuo */
+  })();
+  onceVisible(document.getElementById('evalDemo'), function(){
+    var el = document.getElementById('qcount'), n = 0;
+    if(reduce){ el.textContent = '34'; return; }
+    var t = setInterval(function(){
+      n += 1; el.textContent = n;
+      if(n >= 34) clearInterval(t);
+    }, 42);
   });
 
   /* ---------- documento ---------- */
@@ -660,7 +679,7 @@ footer{margin-top:48px;padding:26px 0 130px;border-top:1px solid var(--line);
 <div class="field"><span>Sua rotina</span><b>15 min &middot; 4x por semana &middot; à noite</b></div>
 <div class="field"><span>Seu objetivo</span><b>Ter relação sem dor</b></div>
 <div class="field"><span>Duração</span><b>16 semanas, em 4 fases</b></div>
-<div class="note">Como você já teve uma experiência dolorida com dilatador, o seu plano <b>atrasa</b> essa etapa e coloca duas semanas de ressignificação antes dela. Isso não é atraso: é o que impede o seu corpo de entrar na fase 4 já esperando dor.</div>`,
+<div class="note">Como você já teve uma experiência dolorida com dilatador, o seu cronograma <b>atrasa</b> essa etapa e coloca duas semanas de ressignificação antes dela. Isso não é atraso: é o que impede o seu corpo de entrar na fase 4 já esperando dor.</div>`,
 `<div class="phase">Fase 1 de 4 &middot; Preparo &middot; Semanas 1 a 4</div>
 <table>
 <tr><td>Terça</td><td>Respiração diafragmática + relaxamento guiado</td><td>15 min</td></tr>
@@ -669,33 +688,7 @@ footer{margin-top:48px;padding:26px 0 130px;border-top:1px solid var(--line);
 <tr><td>Domingo</td><td>Registro da semana no seu diário</td><td>10 min</td></tr>
 </table>
 <div class="green"><b>Você pode avançar quando</b>Conseguir completar os 15 minutos sem prender a respiração e perceber as pernas soltas ao fim da prática, em pelo menos 3 das 4 sessões da semana.</div>
-<div class="note"><b>Se travar:</b> repita a semana inteira. Repetir uma fase não é recomeçar — é o que faz a seguinte funcionar.</div>`,
-`<div class="phase">Fase 2 de 4 &middot; Reconhecimento &middot; Semanas 5 a 8</div>
-<table>
-<tr><td>Terça</td><td>Autoconhecimento guiado — módulo 4, aulas 1 e 2</td><td>15 min</td></tr>
-<tr><td>Quinta</td><td>Toque externo, sem tentar entrar</td><td>15 min</td></tr>
-<tr><td>Sábado</td><td>Toque externo + respiração combinada</td><td>15 min</td></tr>
-<tr><td>Domingo</td><td>Conversa com o parceiro — roteiro 2 do guia</td><td>20 min</td></tr>
-</table>
-<div class="green"><b>Você pode avançar quando</b>Conseguir tocar a região externa sem que o corpo se contraia por reflexo, em 3 sessões seguidas.</div>
-<div class="note"><b>Ainda não faça:</b> qualquer tentativa de penetração, mesmo que pareça que dá. É a fase em que a pressa mais atrapalha.</div>`,
-`<div class="phase">Fase 3 de 4 &middot; Massagem perineal &middot; Semanas 9 a 13</div>
-<table>
-<tr><td>Terça</td><td>Massagem perineal externa — módulo 5</td><td>15 min</td></tr>
-<tr><td>Quinta</td><td>Massagem perineal — módulo 6, aula 1</td><td>15 min</td></tr>
-<tr><td>Sábado</td><td>Massagem + respiração de saída</td><td>15 min</td></tr>
-<tr><td>Domingo</td><td>Semanas 12 e 13: ressignificação do dilatador</td><td>20 min</td></tr>
-</table>
-<div class="green"><b>Você pode avançar quando</b>A massagem acontecer sem ardência e sem que você precise interromper — e quando pensar no dilatador não acelerar mais o seu coração.</div>`,
-`<div class="phase">Fase 4 de 4 &middot; Dilatadores &middot; Semanas 14 a 16</div>
-<table>
-<tr><td>Terça</td><td>Dilatador 1, apoiado, sem introduzir — módulo 7</td><td>15 min</td></tr>
-<tr><td>Quinta</td><td>Dilatador 1, entrada parcial no seu tempo</td><td>15 min</td></tr>
-<tr><td>Sábado</td><td>Dilatador 1 + respiração</td><td>15 min</td></tr>
-<tr><td>Domingo</td><td>Registro e leitura da semana</td><td>10 min</td></tr>
-</table>
-<div class="green"><b>Você pode avançar quando</b>O dilatador 1 entrar sem dor em 3 sessões seguidas. Aí, e só aí, começa o dilatador 2.</div>
-<div class="note"><b>Regra da fase:</b> se doer, para. Dor aqui não é progresso — é o sinal de que a fase anterior precisa de mais uma semana.</div>`
+<div class="note"><b>Se travar:</b> repita a semana inteira. Repetir uma fase não é recomeçar — é o que faz a seguinte funcionar.</div>`
   ];
   var paper = document.getElementById('paper');
   function showPage(i){
@@ -714,12 +707,17 @@ footer{margin-top:48px;padding:26px 0 130px;border-top:1px solid var(--line);
     {who:'me', t:'Amanda, tô na semana 6 e hoje doeu um pouquinho. Eu paro?'},
     {who:'ai', t:'Você está na <b>Fase 2</b>, e nessa fase nada precisa entrar. Se doeu, provavelmente o toque foi além do externo. Volte para o exercício de terça e refaça a semana.'},
     {who:'me', t:'Mas aí eu atraso tudo, né?'},
-    {who:'ai', t:'Não. O seu plano já prevê repetição de semana — a duração de 16 semanas foi calculada com isso dentro. Repetir aqui é o que faz a Fase 4 dar certo lá na frente.'},
+    {who:'ai', t:'Não. O seu cronograma já prevê repetição de semana — as 16 semanas foram calculadas com isso dentro. Repetir aqui é o que faz a Fase 4 dar certo lá na frente.'},
     {who:'me', t:'Ok. E quando eu vou saber que posso passar?'},
     {who:'ai', t:'Quando você conseguir 3 sessões seguidas de toque externo sem o corpo se contrair sozinho. Está escrito no quadro verde da sua Fase 2.'}
   ];
   onceVisible(document.getElementById('chatDemo'), function(){
     var box = document.getElementById('chat'), i = 0;
+    function add(m){
+      var d = document.createElement('div');
+      d.className = 'msg ' + m.who; d.innerHTML = m.t; box.appendChild(d);
+      while(box.children.length > 5) box.removeChild(box.firstChild);
+    }
     function next(){
       if(i >= script.length) return;
       var m = script[i];
@@ -727,28 +725,10 @@ footer{margin-top:48px;padding:26px 0 130px;border-top:1px solid var(--line);
         var t = document.createElement('div');
         t.className = 'typing'; t.innerHTML = '<i></i><i></i><i></i>';
         box.appendChild(t);
-        setTimeout(function(){
-          box.removeChild(t); add(m); i++; setTimeout(next, 1500);
-        }, 1250);
+        setTimeout(function(){ box.removeChild(t); add(m); i++; setTimeout(next, 1500); }, 1250);
       } else { add(m); i++; setTimeout(next, reduce ? 0 : 900); }
     }
-    function add(m){
-      var d = document.createElement('div');
-      d.className = 'msg ' + m.who; d.innerHTML = m.t; box.appendChild(d);
-      while(box.children.length > 5) box.removeChild(box.firstChild);
-    }
     next();
-  });
-
-  /* ---------- calendário ---------- */
-  var mn = ['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'];
-  var mbox = document.getElementById('months');
-  mn.forEach(function(m){ var d = document.createElement('div'); d.className='mo'; d.textContent=m; mbox.appendChild(d); });
-  onceVisible(document.getElementById('calDemo'), function(){
-    var els = mbox.querySelectorAll('.mo');
-    els.forEach(function(el,i){
-      setTimeout(function(){ el.classList.add('on'); if(i===0) el.classList.add('now'); }, reduce ? 0 : i*95);
-    });
   });
 
   /* ---------- cta fixo ---------- */
