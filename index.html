@@ -32,7 +32,7 @@
   --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,monospace;
   --e1:cubic-bezier(.22,.68,.24,1);
   --e2:cubic-bezier(.36,0,.06,1);
-  --gap:clamp(40px,8.4vw,64px);
+  --gap:clamp(36px,7.4vw,54px);
 }
 *{box-sizing:border-box}
 html,body{overflow-x:hidden;overflow-x:clip}
@@ -79,7 +79,7 @@ img{max-width:100%}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.72)}}
 
 /* ---------- layout ---------- */
-.wrap{max-width:680px;margin:0 auto;padding:0 clamp(18px,5vw,26px)}
+.wrap{max-width:680px;margin:0 auto;padding-inline:clamp(18px,5vw,26px)}
 main{position:relative;z-index:2}
 main > section{padding-block:var(--gap)}
 .divider{padding-block:clamp(14px,3.6vw,24px)}
