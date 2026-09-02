@@ -150,7 +150,7 @@ h2.t em{font-style:italic;color:var(--accent)}
 .stat span{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;
   color:var(--text-dim);display:block;margin-top:7px;line-height:1.45}
 .sig{display:flex;align-items:center;gap:14px}
-.avatar{width:58px;height:58px;border-radius:50%;flex:0 0 58px;object-fit:cover;
+.avatar{width:58px;height:58px;border-radius:50%;flex:0 0 58px;object-fit:cover;object-position:50% 22%;
   background:linear-gradient(140deg,#3B2C29,#5E4142);border:1px solid var(--line-2);
   display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:20px;color:var(--accent)}
 .sig-name strong{display:block;font-weight:600;font-size:15px}
@@ -284,39 +284,72 @@ h2.t em{font-style:italic;color:var(--accent)}
 /* encontros ao vivo */
 .live{border:1px solid var(--line-2);border-radius:22px;
   background:linear-gradient(180deg,var(--panel-2),var(--panel));
-  padding:18px clamp(14px,4vw,20px) 20px;margin-top:clamp(24px,5.6vw,34px);
+  padding:clamp(14px,4vw,20px) clamp(14px,4vw,20px) 20px;margin-top:clamp(24px,5.6vw,34px);
   box-shadow:0 26px 60px -42px rgba(0,0,0,.95)}
-.live-head{display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding-bottom:14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .onair{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--accent-hover);
   display:inline-flex;align-items:center;gap:7px;border:1px solid var(--accent-deep);
   border-radius:999px;padding:5px 11px;background:var(--accent-muted)}
 .onair i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:onair 2s infinite}
 @keyframes onair{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(233,165,166,.5)}70%{opacity:.5;box-shadow:0 0 0 8px rgba(233,165,166,0)}}
-.live-when{font-family:var(--mono);font-size:10.5px;color:var(--text-dim);letter-spacing:.06em}
-.live-when b{color:var(--text-primary);font-weight:500}
-.live-stage{position:relative;min-height:172px;margin-top:16px}
-.lt{position:absolute;left:0;right:0;top:0;opacity:0;transform:translateY(12px);
-  transition:opacity .55s var(--e1),transform .55s var(--e1)}
-.lt:first-child{opacity:1;transform:none}
-.live-stage.js .lt{opacity:0;transform:translateY(12px)}
-.live-stage.js .lt.on{opacity:1;transform:none}
-.lt .m{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--accent);margin:0 0 9px}
-.lt h3{margin:0 0 9px;font-family:var(--display);font-weight:500;
-  font-size:clamp(21px,5.4vw,26px);line-height:1.2;letter-spacing:-.01em}
-.lt p{margin:0;color:var(--text-secondary);font-size:clamp(14.5px,3.9vw,15.5px)}
-.live-dots{display:flex;gap:5px;margin-top:18px}
-.live-dots i{flex:1 1 0;height:2px;background:var(--line-2);border-radius:2px;
-  transition:background .45s var(--e1)}
-.live-dots i.on{background:var(--accent)}
-.live-cap{margin:18px 0 0;padding-top:16px;border-top:1px solid var(--line);
+
+/* macbook: a sala do encontro */
+.mac{padding:0 clamp(0px,1.6vw,10px)}
+.mac-lid{background:linear-gradient(168deg,#4A3D39,#2A2220);border-radius:14px;
+  padding:clamp(7px,2vw,10px);border:1px solid #55443F;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 34px 64px -44px #000}
+.mac-screen{position:relative;background:#0E0A09;border-radius:6px;overflow:hidden;
+  aspect-ratio:16/10;display:grid;grid-template-rows:auto 1fr auto;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.mac-cam{position:absolute;top:3px;left:50%;transform:translateX(-50%);width:4px;height:4px;
+  border-radius:50%;background:#3A2E2B;z-index:5}
+.mac-foot{height:clamp(8px,2.4vw,11px);margin:0 -5.5%;
+  background:linear-gradient(180deg,#4A3D39,#241E1C);
+  border-radius:0 0 9px 9px;position:relative;box-shadow:0 12px 22px -16px #000}
+.mac-foot::after{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);
+  width:16%;height:42%;background:#1C1614;border-radius:0 0 6px 6px}
+
+.room-top .onair{font-size:clamp(7px,2vw,9px);padding:3px 8px;gap:5px}
+.room-top .onair i{width:5px;height:5px}
+.room-top{display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:clamp(4px,1.3vw,7px) clamp(7px,2.2vw,11px);background:rgba(255,255,255,.03);
+  border-bottom:1px solid rgba(255,255,255,.06)}
+.room-timer{font-family:var(--mono);font-size:clamp(8.5px,2.4vw,10px);color:var(--text-dim);
+  letter-spacing:.06em;font-variant-numeric:tabular-nums}
+.room-main{position:relative;padding:clamp(5px,1.6vw,8px);min-height:0;display:grid}
+.stage-tile{position:relative;border-radius:8px;overflow:hidden;background:#1B1413;
+  min-height:0;display:flex;align-items:center;justify-content:center}
+.stage-tile img{width:100%;height:100%;object-fit:cover;object-position:50% 25%;display:block;position:relative;z-index:1}
+.stage-tile .ini{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:clamp(26px,8vw,40px);color:var(--accent-deep)}
+.stage-tile::after{content:"";position:absolute;inset:0;border-radius:8px;pointer-events:none;
+  box-shadow:inset 0 0 0 2px var(--accent);opacity:.22;animation:speak 2.4s var(--e1) infinite}
+@keyframes speak{0%,100%{opacity:.16}45%{opacity:.85}}
+.stage-name{position:absolute;left:7px;bottom:6px;z-index:2;display:inline-flex;align-items:center;
+  gap:5px;background:rgba(14,10,9,.72);border-radius:5px;padding:3px 7px;
+  font-size:clamp(8.5px,2.3vw,10.5px);color:var(--text-primary);letter-spacing:.01em}
+.stage-name i{width:5px;height:8px;border-radius:3px;background:var(--accent);display:block;
+  animation:mic 1.1s ease-in-out infinite}
+@keyframes mic{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
+.seats{position:absolute;right:clamp(9px,2.8vw,14px);bottom:clamp(9px,2.8vw,14px);z-index:3;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(3px,1.1vw,5px);
+  width:min(58%,240px);height:clamp(24px,7vw,38px)}
+.seat{position:relative;border-radius:5px;background:rgba(16,11,10,.86);
+  border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:clamp(8px,2.4vw,11px);color:var(--text-dim)}
+.seat.hand{border-color:var(--accent-deep);color:var(--accent-hover)}
+.seat.hand::after{content:"";position:absolute;top:-3px;right:-3px;width:9px;height:9px;
+  border-radius:50%;background:var(--accent);animation:hand 2.8s var(--e1) infinite}
+@keyframes hand{0%,70%,100%{transform:scale(.55);opacity:.3}80%,92%{transform:scale(1);opacity:1}}
+.room-bar{display:flex;align-items:center;justify-content:center;gap:clamp(8px,2.6vw,15px);
+  padding:clamp(4px,1.2vw,6px);background:rgba(255,255,255,.03);
+  border-top:1px solid rgba(255,255,255,.06)}
+.room-bar span{width:clamp(12px,3.4vw,17px);height:clamp(12px,3.4vw,17px);border-radius:50%;
+  border:1px solid rgba(255,255,255,.14);display:block}
+.room-bar span.red{background:var(--accent-deep);border-color:transparent}
+.live-cap{margin:20px 0 0;padding-top:16px;border-top:1px solid var(--line);
   font-size:clamp(13.5px,3.6vw,14.5px);color:var(--text-dim);line-height:1.55}
 .live-cap b{color:var(--text-secondary);font-weight:600}
-.live-stage.static{min-height:0}
-.live-stage.static .lt{position:relative;opacity:1;transform:none;
-  padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--line)}
-.live-stage.static .lt:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
 
 /* ganhos do encontro */
 .perks{margin:clamp(22px,5vw,30px) 0 0;padding:0;display:grid;gap:15px}
@@ -462,8 +495,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
     </div>
 
     <div class="sig rv d3">
-      <!-- PLACEHOLDER: trocar por <img class="avatar" src="assets/amanda.jpg" alt="Dra. Amanda Almeida"> -->
-      <div class="avatar" aria-hidden="true">AA</div>
+      <img class="avatar" src="assets/amanda.png" alt="Dra. Amanda Almeida" width="58" height="58"
+           onerror="this.outerHTML='&lt;div class=&quot;avatar&quot; aria-hidden=&quot;true&quot;&gt;AA&lt;/div&gt;'">
       <div class="sig-name">
         <strong>Dra. Amanda Almeida</strong>
         <span>Fisioterapia Pélvica e Sexologia · UNESP</span>
@@ -574,74 +607,36 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
     <p class="lede rv d1">Todo mês eu abro uma sala ao vivo com um tema novo e fico até a última pergunta ser respondida. Não é aula gravada nem resposta por e-mail: é você me contando onde está, e eu te respondendo na hora, com o seu cronograma na mão.</p>
 
     <div class="live rv d2" id="live">
-      <div class="live-head">
-        <span class="onair"><i></i>AO VIVO</span>
-        <span class="live-when">Encontro <b id="liveNo">01</b> de 12</span>
+      <div class="mac">
+        <div class="mac-lid">
+          <div class="mac-screen">
+            <span class="mac-cam" aria-hidden="true"></span>
+            <div class="room-top">
+              <span class="onair"><i></i>AO VIVO</span>
+              <span class="room-timer" id="roomTimer">01:07:33</span>
+            </div>
+            <div class="room-main">
+              <div class="stage-tile">
+                <img src="assets/amanda.png" alt="Dra. Amanda Almeida conduzindo o encontro ao vivo" onerror="this.remove()">
+                <span class="ini" aria-hidden="true">AA</span>
+                <span class="stage-name"><i aria-hidden="true"></i>Dra. Amanda</span>
+              </div>
+              <div class="seats" aria-hidden="true">
+                <div class="seat">MC</div>
+                <div class="seat hand">RS</div>
+                <div class="seat">JP</div>
+                <div class="seat">···</div>
+              </div>
+            </div>
+            <div class="room-bar" aria-hidden="true">
+              <span></span><span></span><span></span><span class="red"></span>
+            </div>
+          </div>
+        </div>
+        <div class="mac-foot" aria-hidden="true"></div>
       </div>
-      <div class="live-stage" id="liveStage">
-        <article class="lt">
-          <p class="m">Mês 01</p>
-          <h3>O corpo antes do toque</h3>
-          <p>Como preparar a região e a respiração nos dias que antecedem a primeira tentativa, sem pressa e sem meta.</p>
-        </article>
-        <article class="lt">
-          <p class="m">Mês 02</p>
-          <h3>Relaxar é mais difícil que contrair</h3>
-          <p>O assoalho pélvico por dentro: por que ele fecha sozinho e como ensinar ele a soltar.</p>
-        </article>
-        <article class="lt">
-          <p class="m">Mês 03</p>
-          <h3>Dilatador sem trauma</h3>
-          <p>Tamanho, tempo, posição e o erro mais comum de quem começa animada demais.</p>
-        </article>
-        <article class="lt">
-          <p class="m">Mês 04</p>
-          <h3>O dia em que nada funciona</h3>
-          <p>O que fazer quando o corpo trava de novo, e por que isso não apaga nada do que você já conquistou.</p>
-        </article>
-        <article class="lt">
-          <p class="m">Mês 05</p>
-          <h3>Como falar com ele</h3>
-          <p>Pedir pausa, explicar o processo e tirar o peso da culpa de cima da relação.</p>
-        </article>
-        <article class="lt">
-          <p class="m">Mês 06</p>
-          <h3>Lubrificação e ressecamento</h3>
-          <p>O que atrapalha de verdade, o que é mito e o que muda em cada fase da vida.</p>
-        </article>
-        <article class="lt">
-          <p class="m">Mês 07</p>
-          <h3>O preventivo sem pânico</h3>
-          <p>O passo a passo para chegar ao consultório e conseguir fazer o exame até o fim.</p>
-        </article>
-        <article class="lt">
-          <p class="m">Mês 08</p>
-          <h3>A ansiedade que chega antes</h3>
-          <p>O medo antecipatório: como interromper o ciclo antes que ele trave o corpo.</p>
-        </article>
-        <article class="lt">
-          <p class="m">Mês 09</p>
-          <h3>Quando a dor sai de cena</h3>
-          <p>O que vem depois: sensibilidade, ritmo e o desejo voltando ao lugar dele.</p>
-        </article>
-        <article class="lt">
-          <p class="m">Mês 10</p>
-          <h3>Pós-parto e cicatriz</h3>
-          <p>Readaptar o assoalho pélvico depois do parto, respeitando o tempo do tecido.</p>
-        </article>
-        <article class="lt">
-          <p class="m">Mês 11</p>
-          <h3>Voltar do ponto certo</h3>
-          <p>Como retomar depois de um período parada sem precisar começar tudo de novo.</p>
-        </article>
-        <article class="lt">
-          <p class="m">Mês 12</p>
-          <h3>Manutenção</h3>
-          <p>Como sustentar o resultado sem depender de cronograma nenhum.</p>
-        </article>
-      </div>
-      <div class="live-dots" id="liveDots" aria-hidden="true"></div>
-      <p class="live-cap">Doze encontros, doze temas, um por mês durante um ano inteiro. Você entra com a câmera fechada se quiser e pergunta pelo chat sem precisar se identificar. <b>Não deu para estar lá na hora? A gravação fica salva</b> para você assistir no seu tempo.</p>
+
+      <p class="live-cap">Um encontro por mês, tema novo em cada um, durante doze meses. Você entra com a câmera fechada se quiser e pergunta pelo chat sem precisar se identificar. <b>Não deu para estar lá na hora? A gravação fica salva</b> para você assistir no seu tempo.</p>
     </div>
 
     <ul class="perks rv d3">
@@ -702,8 +697,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
     <p class="rv d1">Mas se ao ler isto você pensou <em>“eu queria isso já montado pra mim”</em>, é exatamente para isso que o Plano Sob Medida existe.</p>
     <p class="rv d1" style="margin-bottom:30px">Te vejo na Aula Inaugural.</p>
     <div class="sig rv d2">
-      <!-- PLACEHOLDER: mesma foto do topo -->
-      <div class="avatar" aria-hidden="true">AA</div>
+      <img class="avatar" src="assets/amanda.png" alt="Dra. Amanda Almeida" width="58" height="58"
+           onerror="this.outerHTML='&lt;div class=&quot;avatar&quot; aria-hidden=&quot;true&quot;&gt;AA&lt;/div&gt;'">
       <div class="sig-name"><strong>Dra. Amanda Almeida</strong><span>Dra. Vaginismo</span></div>
     </div>
     <a class="decline" href="https://obrigado2.programamulhereslivres.com.br/">Não, prefiro seguir sem o plano por enquanto</a>
@@ -960,31 +955,19 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
     next();
   });
 
-  /* encontros ao vivo: os temas passam sozinhos */
+  /* encontros ao vivo: o cronometro da sala anda */
   (function(){
-    var stage = document.getElementById('liveStage');
-    if(!stage) return;
-    var temas = stage.querySelectorAll('.lt');
-    var dots = document.getElementById('liveDots');
-    var num = document.getElementById('liveNo');
-    if(reduce){ stage.classList.add('static'); dots.style.display = 'none'; return; }
-    stage.classList.add('js');
-    var html = '';
-    for(var k = 0; k < temas.length; k++) html += '<i></i>';
-    dots.innerHTML = html;
-    var marks = dots.querySelectorAll('i'), i = 0, timer = null;
-    function pinta(){
-      temas.forEach(function(el, n){ el.classList.toggle('on', n === i); });
-      marks.forEach(function(el, n){ el.classList.toggle('on', n === i); });
-      var r = (i + 1) < 10 ? '0' + (i + 1) : String(i + 1);
-      if(num.textContent !== r) num.textContent = r;
-    }
-    pinta();
+    var t = document.getElementById('roomTimer');
+    if(!t || reduce) return;
+    var seg = 1 * 3600 + 7 * 60 + 33, ultimo = t.textContent;
+    function dois(n){ return (n < 10 ? '0' : '') + n; }
     onceVisible(document.getElementById('live'), function(){
-      timer = setInterval(function(){
+      setInterval(function(){
         if(document.hidden) return;
-        i = (i + 1) % temas.length; pinta();
-      }, 3400);
+        seg++;
+        var txt = dois(Math.floor(seg / 3600)) + ':' + dois(Math.floor(seg % 3600 / 60)) + ':' + dois(seg % 60);
+        if(txt !== ultimo){ ultimo = txt; t.textContent = txt; }
+      }, 1000);
     });
   })();
 

@@ -1,0 +1,2 @@
+Coloque aqui a foto da Dra. Amanda com o nome exato amanda.png
+Enquanto o arquivo nao existir, a pagina mostra as iniciais AA no lugar.
