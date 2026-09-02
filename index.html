@@ -434,8 +434,6 @@ h2.t em{font-style:italic;color:var(--accent)}
 .clock b{font-family:var(--mono);font-size:clamp(20px,5.4vw,24px);color:var(--accent-hover);
   font-weight:500;font-variant-numeric:tabular-nums;letter-spacing:.04em}
 .after{margin:16px 0 0;font-size:13.5px;color:var(--text-dim);line-height:1.55}
-body.expired .clock b{color:var(--text-dim)}
-body.expired .anchor,body.expired .cash{display:none}
 
 /* fecho */
 .close p{margin:0 0 20px;font-size:clamp(16px,4.2vw,17.5px)}
@@ -733,17 +731,11 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
   })();
 
 
-  /* ---------- ancoragem e contador ----------
-     Desligue o contador trocando ligado para false. Com ele ligado, quando o
-     tempo acaba a página assume o valor avulso e o botão passa a apontar para
-     a URL de checkout cheio, que precisa existir de verdade. */
-  var OFERTA = {
-    ligado: true,
-    minutos: 15,
-    urlCheio: '#',            /* PLACEHOLDER: URL de checkout de R$ 797 */
-    precoCheio: '<small>12x de R$</small>79,70',
-    avistaCheio: 'ou R$ 797 à vista'
-  };
+  /* ---------- contador da condicao ----------
+     O contador so marca o tempo. Quando zera, nada muda: o preco, o botao e
+     a oferta continuam exatamente iguais, e o relogio para em 00:00.
+     Desligue o relogio inteiro trocando ligado para false. */
+  var OFERTA = { ligado: true, minutos: 15 };
   (function(){
     var c2 = document.getElementById('clock2');
     if(!OFERTA.ligado){
@@ -756,18 +748,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
       var m = Math.floor(falta / 60000), sg = Math.floor(falta % 60000 / 1000);
       var txt = (m < 10 ? '0' : '') + m + ':' + (sg < 10 ? '0' : '') + sg;
       if(txt !== ultimo){ ultimo = txt; c2.textContent = txt; }
-      if(falta <= 0){ clearInterval(t); expira(); }
-    }
-    function expira(){
-      document.body.classList.add('expired');
-      document.getElementById('priceMain').innerHTML = OFERTA.precoCheio;
-      document.getElementById('priceCash').textContent = OFERTA.avistaCheio;
-      document.getElementById('clockLabel').textContent = 'A condição desta página expirou';
-      c2.textContent = '00:00';
-      document.getElementById('afterLine').textContent = 'Este é o valor avulso do Plano Sob Medida.';
-      if(OFERTA.urlCheio && OFERTA.urlCheio !== '#'){
-        document.getElementById('cta').setAttribute('href', OFERTA.urlCheio);
-      }
+      if(falta <= 0) clearInterval(t);
     }
     pinta();
     var t = setInterval(pinta, 1000);
