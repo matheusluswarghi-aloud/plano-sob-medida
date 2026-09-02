@@ -13,7 +13,7 @@ Página estática de upsell (one-click, R$ 397) do funil **Programa Mulheres Liv
 - [ ] URL do checkout cheio de R$ 797 (`OFERTA.urlCheio`, hoje `#`: com `#` o botão mantém o link do upsell quando o contador zera)
 - [ ] IA de tira-dúvidas rodando (aparece como entregável 3)
 - [ ] Definir o dia fixo dos encontros ao vivo e a plataforma da sala
-- [x] Enquadramento da foto conferido em 420px e 1100px (`object-position:50% 0%`)
+- [x] Tela do notebook usa `assets/aula.jpg`, um frame da gravação da Amanda; as assinaturas usam a foto de perfil
 - [ ] Redefinir o downsell — o ticket principal passou a ser R$ 397
 
 ## Decisões da oferta

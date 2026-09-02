@@ -1,4 +1,8 @@
-amanda.png e o original entregue pelo Matheus (1306x1298).
-amanda.jpg e a versao usada na pagina: 900px, qualidade 82, 117 KB.
-Se trocar a foto, gere o jpg de novo com:
+amanda.png  original da foto de perfil (1306x1298)
+amanda.jpg  versao usada nas duas assinaturas (900px, 117 KB)
+aulamockup.png  frame da gravacao da Amanda (2826x1532)
+aula.jpg  versao usada na tela do notebook (1400px, 142 KB)
+
+Se trocar alguma imagem, gere o jpg de novo:
   sips -Z 900 -s format jpeg -s formatOptions 82 --out amanda.jpg amanda.png
+  sips -Z 1400 -s format jpeg -s formatOptions 82 --out aula.jpg aulamockup.png
