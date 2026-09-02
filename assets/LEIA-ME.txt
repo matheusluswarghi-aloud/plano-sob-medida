@@ -1,2 +1,4 @@
-Coloque aqui a foto da Dra. Amanda com o nome exato amanda.png
-Enquanto o arquivo nao existir, a pagina mostra as iniciais AA no lugar.
+amanda.png e o original entregue pelo Matheus (1306x1298).
+amanda.jpg e a versao usada na pagina: 900px, qualidade 82, 117 KB.
+Se trocar a foto, gere o jpg de novo com:
+  sips -Z 900 -s format jpeg -s formatOptions 82 --out amanda.jpg amanda.png
