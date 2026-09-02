@@ -9,7 +9,7 @@ Página estática de upsell (one-click, R$ 397) do funil **Programa Mulheres Liv
 - [x] Foto da Dra. Amanda: `assets/amanda.jpg` (900px, 117 KB) nas duas assinaturas e na tela do notebook; original em `assets/amanda.png`
 - [x] URL de aceite do one-click no botão principal (`pay.hub.la/pTGcjmIHBXItr7LaW5vx/upsell`)
 - [x] URL de recusa no link "Não, prefiro seguir sem o plano" (`obrigado2.programamulhereslivres.com.br`)
-- [ ] Confirmar parcelamento real da plataforma (hoje: 12x de R$ 39,70)
+- [x] Parcelamento: 12x de R$ 41,06
 - [ ] URL do checkout cheio de R$ 797 (`OFERTA.urlCheio`, hoje `#`: com `#` o botão mantém o link do upsell quando o contador zera)
 - [ ] IA de tira-dúvidas rodando (aparece como entregável 3)
 - [ ] Definir o dia fixo dos encontros ao vivo e a plataforma da sala
