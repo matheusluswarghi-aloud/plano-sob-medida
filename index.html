@@ -281,6 +281,51 @@ h2.t em{font-style:italic;color:var(--accent)}
 .typing i:nth-child(2){animation-delay:.16s}.typing i:nth-child(3){animation-delay:.32s}
 @keyframes tb{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
 
+/* encontros ao vivo */
+.live{border:1px solid var(--line-2);border-radius:22px;
+  background:linear-gradient(180deg,var(--panel-2),var(--panel));
+  padding:18px clamp(14px,4vw,20px) 20px;margin-top:clamp(24px,5.6vw,34px);
+  box-shadow:0 26px 60px -42px rgba(0,0,0,.95)}
+.live-head{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding-bottom:14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.onair{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:var(--accent-hover);
+  display:inline-flex;align-items:center;gap:7px;border:1px solid var(--accent-deep);
+  border-radius:999px;padding:5px 11px;background:var(--accent-muted)}
+.onair i{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:onair 2s infinite}
+@keyframes onair{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(233,165,166,.5)}70%{opacity:.5;box-shadow:0 0 0 8px rgba(233,165,166,0)}}
+.live-when{font-family:var(--mono);font-size:10.5px;color:var(--text-dim);letter-spacing:.06em}
+.live-when b{color:var(--text-primary);font-weight:500}
+.live-stage{position:relative;min-height:172px;margin-top:16px}
+.lt{position:absolute;left:0;right:0;top:0;opacity:0;transform:translateY(12px);
+  transition:opacity .55s var(--e1),transform .55s var(--e1)}
+.lt:first-child{opacity:1;transform:none}
+.live-stage.js .lt{opacity:0;transform:translateY(12px)}
+.live-stage.js .lt.on{opacity:1;transform:none}
+.lt .m{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 9px}
+.lt h3{margin:0 0 9px;font-family:var(--display);font-weight:500;
+  font-size:clamp(21px,5.4vw,26px);line-height:1.2;letter-spacing:-.01em}
+.lt p{margin:0;color:var(--text-secondary);font-size:clamp(14.5px,3.9vw,15.5px)}
+.live-dots{display:flex;gap:5px;margin-top:18px}
+.live-dots i{flex:1 1 0;height:2px;background:var(--line-2);border-radius:2px;
+  transition:background .45s var(--e1)}
+.live-dots i.on{background:var(--accent)}
+.live-cap{margin:18px 0 0;padding-top:16px;border-top:1px solid var(--line);
+  font-size:clamp(13.5px,3.6vw,14.5px);color:var(--text-dim);line-height:1.55}
+.live-cap b{color:var(--text-secondary);font-weight:600}
+.live-stage.static{min-height:0}
+.live-stage.static .lt{position:relative;opacity:1;transform:none;
+  padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--line)}
+.live-stage.static .lt:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+
+/* ganhos do encontro */
+.perks{margin:clamp(22px,5vw,30px) 0 0;padding:0;display:grid;gap:15px}
+.perks li{list-style:none;padding-left:27px;position:relative;color:var(--text-secondary);
+  font-size:clamp(14.5px,3.9vw,15.5px)}
+.perks li b{color:var(--text-primary);font-weight:600}
+.perks li::before{content:"";position:absolute;left:0;top:8px;width:10px;height:10px;
+  border-radius:50%;border:2px solid var(--accent)}
+
 /* recap */
 .recap{border:1px solid var(--line);border-radius:20px;background:var(--panel);
   padding:24px clamp(16px,4.6vw,22px)}
@@ -408,6 +453,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
     <p class="rv">Antes de você entrar, eu quero te mostrar uma coisa que só existe nesta página.</p>
     <p class="rv d1">Quando uma mulher senta na minha frente numa consulta, boa parte do meu trabalho não é ensinar exercício. É olhar a história dela, entender em que ponto o corpo está hoje e montar a ordem: o que fazer primeiro, quantos minutos, em quais dias da semana, o que ainda esperar e, principalmente, <em>quando ela pode passar para a próxima fase</em>.</p>
     <p class="rv d2">Essa parte do meu trabalho eu consegui colocar dentro de um cronograma. Um cronograma feito a partir das suas respostas, com o seu nome, o seu ponto de partida e os seus horários.</p>
+    <p class="rv d2">E o que nenhum cronograma consegue prever, a gente resolve ao vivo: <em>uma vez por mês eu abro uma sala</em> e fico ali, com vocês, até a última pergunta ser respondida.</p>
 
     <div class="stats rv d2">
       <div class="stat"><b>10+</b><span>anos de<br>consultório</span></div>
@@ -519,6 +565,93 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
     </div>
   </section>
 
+
+  <div class="wrap divider"><svg class="wave" data-amp="0.3" viewBox="0 0 600 46" preserveAspectRatio="none" aria-hidden="true"><path d=""/></svg></div>
+
+  <section class="wrap">
+    <p class="kick rv"><i></i>Entregável quatro · Encontros ao vivo</p>
+    <h2 class="t rv">Uma noite por mês, <em>eu ao vivo</em>, com você.</h2>
+    <p class="lede rv d1">Todo mês eu abro uma sala ao vivo com um tema novo e fico até a última pergunta ser respondida. Não é aula gravada nem resposta por e-mail: é você me contando onde está, e eu te respondendo na hora, com o seu cronograma na mão.</p>
+
+    <div class="live rv d2" id="live">
+      <div class="live-head">
+        <span class="onair"><i></i>AO VIVO</span>
+        <span class="live-when">Encontro <b id="liveNo">01</b> de 12</span>
+      </div>
+      <div class="live-stage" id="liveStage">
+        <article class="lt">
+          <p class="m">Mês 01</p>
+          <h3>O corpo antes do toque</h3>
+          <p>Como preparar a região e a respiração nos dias que antecedem a primeira tentativa, sem pressa e sem meta.</p>
+        </article>
+        <article class="lt">
+          <p class="m">Mês 02</p>
+          <h3>Relaxar é mais difícil que contrair</h3>
+          <p>O assoalho pélvico por dentro: por que ele fecha sozinho e como ensinar ele a soltar.</p>
+        </article>
+        <article class="lt">
+          <p class="m">Mês 03</p>
+          <h3>Dilatador sem trauma</h3>
+          <p>Tamanho, tempo, posição e o erro mais comum de quem começa animada demais.</p>
+        </article>
+        <article class="lt">
+          <p class="m">Mês 04</p>
+          <h3>O dia em que nada funciona</h3>
+          <p>O que fazer quando o corpo trava de novo, e por que isso não apaga nada do que você já conquistou.</p>
+        </article>
+        <article class="lt">
+          <p class="m">Mês 05</p>
+          <h3>Como falar com ele</h3>
+          <p>Pedir pausa, explicar o processo e tirar o peso da culpa de cima da relação.</p>
+        </article>
+        <article class="lt">
+          <p class="m">Mês 06</p>
+          <h3>Lubrificação e ressecamento</h3>
+          <p>O que atrapalha de verdade, o que é mito e o que muda em cada fase da vida.</p>
+        </article>
+        <article class="lt">
+          <p class="m">Mês 07</p>
+          <h3>O preventivo sem pânico</h3>
+          <p>O passo a passo para chegar ao consultório e conseguir fazer o exame até o fim.</p>
+        </article>
+        <article class="lt">
+          <p class="m">Mês 08</p>
+          <h3>A ansiedade que chega antes</h3>
+          <p>O medo antecipatório: como interromper o ciclo antes que ele trave o corpo.</p>
+        </article>
+        <article class="lt">
+          <p class="m">Mês 09</p>
+          <h3>Quando a dor sai de cena</h3>
+          <p>O que vem depois: sensibilidade, ritmo e o desejo voltando ao lugar dele.</p>
+        </article>
+        <article class="lt">
+          <p class="m">Mês 10</p>
+          <h3>Pós-parto e cicatriz</h3>
+          <p>Readaptar o assoalho pélvico depois do parto, respeitando o tempo do tecido.</p>
+        </article>
+        <article class="lt">
+          <p class="m">Mês 11</p>
+          <h3>Voltar do ponto certo</h3>
+          <p>Como retomar depois de um período parada sem precisar começar tudo de novo.</p>
+        </article>
+        <article class="lt">
+          <p class="m">Mês 12</p>
+          <h3>Manutenção</h3>
+          <p>Como sustentar o resultado sem depender de cronograma nenhum.</p>
+        </article>
+      </div>
+      <div class="live-dots" id="liveDots" aria-hidden="true"></div>
+      <p class="live-cap">Doze encontros, doze temas, um por mês durante um ano inteiro. Você entra com a câmera fechada se quiser e pergunta pelo chat sem precisar se identificar. <b>Não deu para estar lá na hora? A gravação fica salva</b> para você assistir no seu tempo.</p>
+    </div>
+
+    <ul class="perks rv d3">
+      <li><b>Você pergunta sobre o seu caso, não sobre um caso qualquer.</b> Diz em que semana está, o que sentiu, onde travou, e sai do encontro sabendo o que fazer na semana seguinte.</li>
+      <li><b>Você escuta o caso das outras.</b> Aquela pergunta que você teria vergonha de fazer aparece na boca de outra mulher, e a resposta serve para você também.</li>
+      <li><b>Cada mês vai fundo em um pedaço do tratamento.</b> Não é revisão do que você já tem: é a camada seguinte, com demonstração e passo a passo.</li>
+      <li><b>Um ponto fixo no calendário.</b> Saber que tem encontro marcado é o que faz a maioria das mulheres continuar quando a rotina aperta.</li>
+    </ul>
+  </section>
+
   <section class="wrap">
     <div class="recap rv">
       <h3>O que você leva hoje</h3>
@@ -526,6 +659,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
         <li><b>Avaliação Sob Medida</b>, os blocos de perguntas que definem o seu ponto de partida, liberada agora</li>
         <li><b>Aula Inaugural</b>, eu te ensinando a ler e a usar o seu cronograma, também liberada agora</li>
         <li><b>Seu cronograma personalizado</b>, semana por semana, com os critérios de avanço, em até 3 dias</li>
+        <li><b>Encontros ao vivo comigo</b>, um por mês durante 12 meses, tema novo em cada um, perguntas abertas e gravação salva</li>
         <li><b>Tira-dúvidas 24h</b>, a inteligência artificial treinada no seu cronograma, durante todo o percurso</li>
       </ul>
     </div>
@@ -538,13 +672,14 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
       <div class="stp rv"><p class="when">Hoje</p><p>Você garante o seu <b>Plano Sob Medida</b> nesta condição e já faz a avaliação completa, se quiser. Ela fica liberada na hora, junto com a Aula Inaugural.</p></div>
       <div class="stp rv d1"><p class="when">Assim que você responder</p><p>Eu recebo as suas respostas, identifico o seu ponto de partida e <b>monto o seu cronograma</b>.</p></div>
       <div class="stp rv d2"><p class="when">Em até 3 dias</p><p>O seu cronograma chega pronto, com o seu nome, as suas fases e os dias encaixados nos <b>seus</b> horários.</p></div>
+      <div class="stp rv d3"><p class="when">Todo mês, por 12 meses</p><p>A gente se encontra <b>ao vivo</b>, com um tema novo, e eu respondo as perguntas de quem estiver lá até acabar.</p></div>
     </div>
   </section>
 
   <section class="wrap" id="offer">
     <div class="offer rv">
       <p class="nm">Plano <em>Sob Medida</em></p>
-      <p class="once">Esta condição existe apenas nesta página</p>
+      <p class="once">Tudo isso, mais os 12 encontros ao vivo, nesta página</p>
       <div class="anchor" id="anchorRow">
         <span class="was">Valor avulso: <s>R$ 797</s></span>
         <span class="off">Metade do preço agora</span>
@@ -553,8 +688,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
       <p class="price" id="priceMain"><small>12x de R$</small>39,70</p>
       <p class="cash" id="priceCash">ou R$ 397 à vista, uma economia de R$ 400</p>
       <div class="clock"><span id="clockLabel">Sua condição expira em</span><b id="clock2">15:00</b></div>
-      <!-- PLACEHOLDER: URL de aceite do one-click com o valor de R$ 397 -->
-      <a class="btn" id="cta" href="#">SIM, QUERO MEU PLANO SOB MEDIDA</a>
+      <a class="btn" id="cta" href="https://pay.hub.la/pTGcjmIHBXItr7LaW5vx/upsell">SIM, QUERO MEU PLANO SOB MEDIDA</a>
       <p class="after" id="afterLine">Fora desta página, o Plano Sob Medida volta ao valor avulso de R$ 797.</p>
       <div class="warranty">
         <div class="seal" aria-hidden="true">7</div>
@@ -572,8 +706,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
       <div class="avatar" aria-hidden="true">AA</div>
       <div class="sig-name"><strong>Dra. Amanda Almeida</strong><span>Dra. Vaginismo</span></div>
     </div>
-    <!-- PLACEHOLDER: URL de recusa do one-click -->
-    <a class="decline" href="#">Não, prefiro seguir sem o plano por enquanto</a>
+    <a class="decline" href="https://obrigado2.programamulhereslivres.com.br/">Não, prefiro seguir sem o plano por enquanto</a>
   </section>
 </main>
 
@@ -631,7 +764,9 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
       document.getElementById('clockLabel').textContent = 'A condição desta página expirou';
       c2.textContent = '00:00';
       document.getElementById('afterLine').textContent = 'Este é o valor avulso do Plano Sob Medida.';
-      document.getElementById('cta').setAttribute('href', OFERTA.urlCheio);
+      if(OFERTA.urlCheio && OFERTA.urlCheio !== '#'){
+        document.getElementById('cta').setAttribute('href', OFERTA.urlCheio);
+      }
     }
     pinta();
     var t = setInterval(pinta, 1000);
@@ -824,6 +959,34 @@ footer{position:relative;z-index:2;border-top:1px solid var(--line);
     }
     next();
   });
+
+  /* encontros ao vivo: os temas passam sozinhos */
+  (function(){
+    var stage = document.getElementById('liveStage');
+    if(!stage) return;
+    var temas = stage.querySelectorAll('.lt');
+    var dots = document.getElementById('liveDots');
+    var num = document.getElementById('liveNo');
+    if(reduce){ stage.classList.add('static'); dots.style.display = 'none'; return; }
+    stage.classList.add('js');
+    var html = '';
+    for(var k = 0; k < temas.length; k++) html += '<i></i>';
+    dots.innerHTML = html;
+    var marks = dots.querySelectorAll('i'), i = 0, timer = null;
+    function pinta(){
+      temas.forEach(function(el, n){ el.classList.toggle('on', n === i); });
+      marks.forEach(function(el, n){ el.classList.toggle('on', n === i); });
+      var r = (i + 1) < 10 ? '0' + (i + 1) : String(i + 1);
+      if(num.textContent !== r) num.textContent = r;
+    }
+    pinta();
+    onceVisible(document.getElementById('live'), function(){
+      timer = setInterval(function(){
+        if(document.hidden) return;
+        i = (i + 1) % temas.length; pinta();
+      }, 3400);
+    });
+  })();
 
   /* pausa fora da aba */
   document.addEventListener('visibilitychange', function(){

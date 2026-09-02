@@ -7,15 +7,18 @@ Página estática de upsell (one-click, R$ 397) do funil **Programa Mulheres Liv
 
 ## Pendências antes de publicar
 - [ ] Foto da Dra. Amanda (2 ocorrências, marcadas como `PLACEHOLDER`)
-- [ ] URL de aceite do one-click no botão principal
-- [ ] URL de recusa no link "Não, prefiro seguir sem o plano"
+- [x] URL de aceite do one-click no botão principal (`pay.hub.la/pTGcjmIHBXItr7LaW5vx/upsell`)
+- [x] URL de recusa no link "Não, prefiro seguir sem o plano" (`obrigado2.programamulhereslivres.com.br`)
 - [ ] Confirmar parcelamento real da plataforma (hoje: 12x de R$ 39,70)
+- [ ] URL do checkout cheio de R$ 797 (`OFERTA.urlCheio`, hoje `#`: com `#` o botão mantém o link do upsell quando o contador zera)
 - [ ] IA de tira-dúvidas rodando (aparece como entregável 3)
+- [ ] Definir o dia fixo dos encontros ao vivo e a plataforma da sala
+- [ ] Validar os 12 temas dos encontros com a Amanda
 - [ ] Redefinir o downsell — o ticket principal passou a ser R$ 397
 
 ## Decisões da oferta
 - Mecanismo: o ritmo é parte do tratamento — o produto vende o critério de avanço
-- Entregáveis: Avaliação Sob Medida · Aula Inaugural · cronograma personalizado (3 dias) · tira-dúvidas 24h por IA
-- Encontros mensais removidos da oferta
+- Entregáveis: Avaliação Sob Medida · Aula Inaugural · cronograma personalizado (3 dias) · tira-dúvidas 24h por IA · 12 encontros ao vivo (um por mês, tema novo, gravação salva)
+- Os encontros ao vivo voltaram para a oferta como entregável quatro, no mesmo ticket de R$ 397
 - Aula Inaugural gravada, liberada na compra
 - Garantia: 7 dias contados da entrega do cronograma
